@@ -12,16 +12,16 @@ void main() => runApp(LearnApp());
 
 // ------------------------------------------------------------------------
 
-//编写一个列表，保存了学习技术胖的一个列表
-const learningList = [
-  "1、初始flutter演示项目",
-  "2、底部导航栏",
-  "3、不规则底部导航栏",
-  "4、炫酷路由的效果",
-  "5、毛玻璃效果制作",
-  "6、保持页面状态",
-  "7、一个不简单的搜索功能",
-];
+//编写一个Map，保存了学习技术胖的一个列表（原来是list，但是存在需要使用if判断，才能进行跳转，比较麻烦）
+Map<String, Widget> learningMap = {
+  "1、初始flutter演示项目": MyHomePage(title: 'Flutter Demo Home Page'),
+  "2、底部导航栏": BottomnavigationWidget(),
+  "3、不规则底部导航栏": BottomAppBarDemo(),
+  "4、炫酷路由的效果": FirstPage(),
+  "5、毛玻璃效果制作": FrostedGlassDemo(),
+  "6、保持页面状态": KeepAliveDemo(),
+  "7、一个不简单的搜索功能": SearchBarDemo(),
+};
 
 class LearnApp extends StatelessWidget {
   @override
@@ -40,44 +40,18 @@ class LearnListPage extends StatelessWidget {
   const LearnListPage({Key key}) : super(key: key);
 
   //思考一些，如果给 Page 添加下面的属性，要怎么去适配
-  //List<String> _learningList; 
+  //List<String> _learningList = []; 
   // = learningList.reversed.toList();
 
-  void _rounterJump(int index, BuildContext context) {
-    print("-----准备跳转");
+  void _listItemTapAction(int index, BuildContext context) {
+    var key = learningMap.keys.toList().reversed.toList()[index];
+    print("点击的item是：$key");
+    Widget widget = learningMap[key];
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (BuildContext context) {
-        if (index == 0) {
-          return MyHomePage(title: 'Flutter Demo Home Page');
-        }
-        else if (index == 1) {
-          return BottomnavigationWidget();
-        }
-        else if (index == 2) {
-          return BottomAppBarDemo();
-        }
-        else if (index == 3) {
-          return FirstPage();
-        }
-        else if (index == 4) {
-          return FrostedGlassDemo();
-        }
-        else if (index == 5) {
-          return KeepAliveDemo();
-        }
-        else if (index == 6) {
-          return SearchBarDemo();
-        }
+      MaterialPageRoute(builder: (BuildContext context) {    
+        return widget;
       })
     );
-  }
-
-  void _listItemTapAction(int index, BuildContext context) {
-    //怎么把索引再次转换回来😂
-    var value = learningList.reversed.toList()[index];
-    var targetIndex = learningList.indexOf(value);
-    print('列表被点击，索引是：$index，实际索引：$targetIndex');
-    _rounterJump(targetIndex, context);
   }
 
   @override
@@ -88,9 +62,9 @@ class LearnListPage extends StatelessWidget {
       ),
       //后面再来一个专门的ListView专题，来适配各种可能遇到的情况：https://www.jianshu.com/p/83387758a591，参考这个
       body: ListView.separated(
-        itemCount: learningList.length,
+        itemCount: learningMap.keys.length,
         itemBuilder: (context, index) => ListTile(
-          title: Text('${learningList.reversed.toList()[index]}'),
+          title: Text('${learningMap.keys.toList().reversed.toList()[index]}'),
           trailing: Icon(Icons.arrow_forward_ios),
           onTap: (){
             _listItemTapAction(index, context);
