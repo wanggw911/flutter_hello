@@ -10,6 +10,10 @@
 * VS Code 菜单栏：`Debug` -> `Start Debugging`
 * 等待项目运行。。。
 
+## 相关命令
+
+* 创建项目的命令：`flutter create --ios-language objc --android-language java`
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

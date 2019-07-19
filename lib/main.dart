@@ -23,6 +23,10 @@ Map<String, Widget> learningMap = {
   "7、一个不简单的搜索功能": SearchBarDemo(),
 };
 
+List<String> learningList() {
+  return learningMap.keys.toList().reversed.toList();
+}
+
 class LearnApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -39,12 +43,8 @@ class LearnApp extends StatelessWidget {
 class LearnListPage extends StatelessWidget {
   const LearnListPage({Key key}) : super(key: key);
 
-  //思考一些，如果给 Page 添加下面的属性，要怎么去适配
-  //List<String> _learningList = []; 
-  // = learningList.reversed.toList();
-
   void _listItemTapAction(int index, BuildContext context) {
-    var key = learningMap.keys.toList().reversed.toList()[index];
+    var key = learningList()[index];
     print("点击的item是：$key");
     Widget widget = learningMap[key];
     Navigator.of(context).push(
@@ -64,7 +64,7 @@ class LearnListPage extends StatelessWidget {
       body: ListView.separated(
         itemCount: learningMap.keys.length,
         itemBuilder: (context, index) => ListTile(
-          title: Text('${learningMap.keys.toList().reversed.toList()[index]}'),
+          title: Text('${learningList()[index]}'),
           trailing: Icon(Icons.arrow_forward_ios),
           onTap: (){
             _listItemTapAction(index, context);
