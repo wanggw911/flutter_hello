@@ -46,6 +46,10 @@ class LearnListPage extends StatelessWidget {
   //List<String> _learningList; 
   // = learningList.reversed.toList();
 
+  void _listItemTapAction(int index) {
+    print('列表被点击，索引是：$index');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +62,9 @@ class LearnListPage extends StatelessWidget {
         itemBuilder: (context, index) => ListTile(
           title: Text('${learningList.reversed.toList()[index]}'),
           trailing: Icon(Icons.arrow_forward_ios),
+          onTap: (){
+            _listItemTapAction(index);
+          },
         ),
         separatorBuilder: (context, index) {
           return Divider(height: 0.5, color: Colors.grey.shade200);
