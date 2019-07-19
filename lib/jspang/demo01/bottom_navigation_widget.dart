@@ -24,7 +24,8 @@ class BottomnavigationWidget extends StatefulWidget {
 }
 
 class _BottomnavigationWidgetState extends State<BottomnavigationWidget> {
-  final _bottomNavigationColor = Colors.blue;
+  final _bottomNavigationNormalColor = Colors.blue;
+  final _bottomNavigationSelectColor = Colors.red;
   int _currentIndex = 0;
   List<Widget> list = List();
 
@@ -38,6 +39,10 @@ class _BottomnavigationWidgetState extends State<BottomnavigationWidget> {
     super.initState();  
   }
 
+  Color _tabbarColor(int index) {
+    return index == _currentIndex ? _bottomNavigationSelectColor : _bottomNavigationNormalColor;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,41 +52,41 @@ class _BottomnavigationWidgetState extends State<BottomnavigationWidget> {
            BottomNavigationBarItem(
              icon: Icon(
                Icons.home,
-               color: _bottomNavigationColor,
+               color: _tabbarColor(0),
              ),
              title: Text(
                'Home',
-               style: TextStyle(color: _bottomNavigationColor),
+               style: TextStyle(color: _tabbarColor(0)),
              ),
            ),
            BottomNavigationBarItem(
              icon: Icon(
                Icons.email,
-               color: _bottomNavigationColor,
+               color: _tabbarColor(1),
              ),
              title: Text(
                'Email',
-               style: TextStyle(color: _bottomNavigationColor),
+               style: TextStyle(color: _tabbarColor(1)),
              ),
            ),
            BottomNavigationBarItem(
              icon: Icon(
                Icons.pages,
-               color: _bottomNavigationColor,
+               color: _tabbarColor(2),
              ),
              title: Text(
                'Pages',
-               style: TextStyle(color: _bottomNavigationColor),
+               style: TextStyle(color: _tabbarColor(2)),
              ),
            ),
            BottomNavigationBarItem(
              icon: Icon(
                Icons.airplay,
-               color: _bottomNavigationColor,
+               color: _tabbarColor(3),
              ),
              title: Text(
                'Airplay',
-               style: TextStyle(color: _bottomNavigationColor),
+               style: TextStyle(color: _tabbarColor(3)),
              ),
            ),
          ],
