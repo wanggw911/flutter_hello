@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hello/jspang/demo01/tabbar_airplay_page.dart';
+import 'package:flutter_hello/jspang/demo01/tabbar_email_page.dart';
+import 'package:flutter_hello/jspang/demo01/tabbar_home_page.dart';
+import 'package:flutter_hello/jspang/demo01/tabbar_pages_page.dart';
 
 class Demo01 extends StatelessWidget {
   const Demo01({Key key}) : super(key: key);
@@ -21,10 +25,23 @@ class BottomnavigationWidget extends StatefulWidget {
 
 class _BottomnavigationWidgetState extends State<BottomnavigationWidget> {
   final _bottomNavigationColor = Colors.blue;
+  int _currentIndex = 0;
+  List<Widget> list = List();
+
+  @override
+  void initState() {
+    list   
+    ..add(HomeScreen())
+    ..add(EmailScreen())
+    ..add(PagesScreen())
+    ..add(AirplayScreen());
+    super.initState();  
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: list[_currentIndex],
        bottomNavigationBar: BottomNavigationBar(
          items: [
            BottomNavigationBarItem(
@@ -68,6 +85,12 @@ class _BottomnavigationWidgetState extends State<BottomnavigationWidget> {
              ),
            ),
          ],
+         currentIndex: _currentIndex,
+         onTap: (int index) {
+           setState(() {
+             _currentIndex = index;
+           });
+         },
          type: BottomNavigationBarType.fixed,
        ),
     );
