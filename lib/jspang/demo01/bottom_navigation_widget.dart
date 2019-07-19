@@ -42,7 +42,7 @@ class _BottomnavigationWidgetState extends State<BottomnavigationWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: list[_currentIndex],
-       bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(
          items: [
            BottomNavigationBarItem(
              icon: Icon(
