@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hello/jspang/demo02/bottom_navigation_widget02.dart';
+// import 'package:flutter_hello/jspang/demo02/demo02_app.dart';
 import 'package:flutter_hello/jspang/demo03/demo03_app.dart';
 
 // Tips：可以在其他地方编写界面，然后在这里修改，就可以查看到效果了，需要删掉这个界面的东西
