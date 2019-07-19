@@ -8,6 +8,9 @@ class FrostedGlassDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('毛玻璃效果'),
+      ),
       body: Stack( //重叠的 Stack Widget，实现重叠
         children: <Widget>[
           ConstrainedBox( //约束盒子组件，添加额外的限制条件到child上

@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_hello/jspang/demo02/demo02_app.dart';
-import 'package:flutter_hello/jspang/demo03/demo03_app.dart';
-import 'package:flutter_hello/jspang/demo04/demo04_app.dart';
-import 'package:flutter_hello/jspang/demo05/demo05_app.dart';
-import 'package:flutter_hello/jspang/demo06/demo06_app.dart';
+import 'package:flutter_hello/jspang/demo01/demo01_app.dart';
+import 'package:flutter_hello/jspang/demo02/demo02_bottom_appBar.dart';
+import 'package:flutter_hello/jspang/demo03/demo03_pages.dart';
+import 'package:flutter_hello/jspang/demo04/demo04_page.dart';
+import 'package:flutter_hello/jspang/demo05/demo05_page.dart';
+import 'package:flutter_hello/jspang/demo06/demo06_page.dart';
 
 // Tips：可以在其他地方编写界面，然后在这里修改，就可以查看到效果了，需要删掉这个界面的东西
 void main() => runApp(LearnApp());
-//void main() => runApp(Demo06());
-// void main() => runApp(Demo05());
-//void main() => runApp(Demo04());
-//void main() => runApp(Demo03());
-//void main() => runApp(Demo02());
-//void main() => runApp(Demo01());
-//void main() => runApp(MyApp());
+
+
+// ------------------------------------------------------------------------
 
 //编写一个列表，保存了学习技术胖的一个列表
 const learningList = [
@@ -46,21 +43,41 @@ class LearnListPage extends StatelessWidget {
   //List<String> _learningList; 
   // = learningList.reversed.toList();
 
+  void _rounterJump(int index, BuildContext context) {
+    print("-----准备跳转");
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (BuildContext context) {
+        if (index == 0) {
+          return MyHomePage(title: 'Flutter Demo Home Page');
+        }
+        else if (index == 1) {
+          return BottomnavigationWidget();
+        }
+        else if (index == 2) {
+          return BottomAppBarDemo();
+        }
+        else if (index == 3) {
+          return FirstPage();
+        }
+        else if (index == 4) {
+          return FrostedGlassDemo();
+        }
+        else if (index == 5) {
+          return KeepAliveDemo();
+        }
+        else if (index == 6) {
+          return SearchBarDemo();
+        }
+      })
+    );
+  }
+
   void _listItemTapAction(int index, BuildContext context) {
     //怎么把索引再次转换回来😂
     var value = learningList.reversed.toList()[index];
     var targetIndex = learningList.indexOf(value);
     print('列表被点击，索引是：$index，实际索引：$targetIndex');
     _rounterJump(targetIndex, context);
-  }
-
-  void _rounterJump(int index, BuildContext context) {
-    print("-----准备跳转");
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (BuildContext context) {
-        return MyHomePage(title: 'Flutter Demo Home Page');
-      })
-    );
   }
 
   @override
@@ -87,6 +104,7 @@ class LearnListPage extends StatelessWidget {
   }
 }
 
+// ------------------------------------------------------------------------
 // TODO: 下面是原始的Demo
 
 class MyApp extends StatelessWidget {
