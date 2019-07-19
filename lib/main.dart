@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'jspang/demo01/bottom_navigation_widget.dart';
+import 'package:flutter_hello/jspang/demo02/bottom_navigation_widget02.dart';
 
 // Tips：可以在其他地方编写界面，然后在这里修改，就可以查看到效果了，需要删掉这个界面的东西
-void main() => runApp(Demo01());
+void main() => runApp(Demo02());
+//void main() => runApp(Demo01());
 //void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
