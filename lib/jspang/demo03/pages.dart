@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hello/jspang/demo03/custome_router.dart';
 
 class FirstPage extends StatelessWidget {
   const FirstPage({Key key}) : super(key: key);
@@ -21,9 +22,12 @@ class FirstPage extends StatelessWidget {
           ),
           onPressed: (){
             Navigator.of(context).push(
-              MaterialPageRoute(builder: (BuildContext context) {
-                return SecondPage();
-              })
+              //自定义路由效果  
+              CutomRoute(SecondPage())
+              //系统自带路由效果
+              //MaterialPageRoute(builder: (BuildContext context) {
+              //  return SecondPage();
+              //})
             );
           },
         ),
