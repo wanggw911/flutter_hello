@@ -1,7 +1,14 @@
 # flutter_hello
 
-A new Flutter project.
-学习编写 flutter 项目
+* A new Flutter project.
+* 学习编写 flutter 项目
+
+## 项目运行
+
+* 项目文件夹拖动到 VS Code
+* 打开模拟器 iPhone：`open -a Simulator`
+* VS Code 菜单栏：`Debug` -> `Start Debugging`
+* 等待项目运行。。。
 
 ## Getting Started
 
