@@ -17,14 +17,14 @@ void main() => runApp(LearnApp());
 
 //编写一个列表，保存了学习技术胖的一个列表
 const learningList = [
-  "底部导航栏",
-  "不规则底部导航栏",
-  "炫酷路由的效果",
-  "毛玻璃效果制作",
-  "保持页面状态",
-  "一个不简单的搜索功能",
+  "1、初始flutter演示项目",
+  "2、底部导航栏",
+  "3、不规则底部导航栏",
+  "4、炫酷路由的效果",
+  "5、毛玻璃效果制作",
+  "6、保持页面状态",
+  "7、一个不简单的搜索功能",
 ];
-
 
 class LearnApp extends StatelessWidget {
   @override
@@ -42,6 +42,10 @@ class LearnApp extends StatelessWidget {
 class LearnListPage extends StatelessWidget {
   const LearnListPage({Key key}) : super(key: key);
 
+  //思考一些，如果给 Page 添加下面的属性，要怎么去适配
+  //List<String> _learningList; 
+  // = learningList.reversed.toList();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,13 +55,14 @@ class LearnListPage extends StatelessWidget {
       body: ListView.builder(
         itemCount: learningList.length,
         itemBuilder: (context, index) => ListTile(
-          title: Text('${learningList[index]}'),
+          title: Text('${learningList.reversed.toList()[index]}'),
         ),
       ),
     );
   }
 }
 
+// TODO: 下面是原始的Demo
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
