@@ -50,13 +50,17 @@ class LearnListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('跟技术胖学习 Flutter'),
+        title: Text('跟着技术胖学习 Flutter'),
       ),
-      body: ListView.builder(
+      //后面再来一个专门的ListView专题，来适配各种可能遇到的情况：https://www.jianshu.com/p/83387758a591，参考这个
+      body: ListView.separated(
         itemCount: learningList.length,
         itemBuilder: (context, index) => ListTile(
           title: Text('${learningList.reversed.toList()[index]}'),
         ),
+        separatorBuilder: (context, index) {
+          return Divider(height: 0.5, color: Colors.grey.shade200);
+        },
       ),
     );
   }
