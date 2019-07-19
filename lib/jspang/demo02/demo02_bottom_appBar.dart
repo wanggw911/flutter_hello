@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_hello/jspang/demo02/each_view.dart';
+import 'package:flutter_hello/jspang/demo02/demo02_each_view.dart';
 
 class BottomAppBarDemo extends StatefulWidget {
   BottomAppBarDemo({Key key}) : super(key: key);
