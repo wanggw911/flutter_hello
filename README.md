@@ -1,6 +1,7 @@
 # flutter_hello
 
 A new Flutter project.
+学习编写 flutter 项目
 
 ## Getting Started
 
