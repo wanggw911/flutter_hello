@@ -6,13 +6,58 @@ import 'package:flutter_hello/jspang/demo05/demo05_app.dart';
 import 'package:flutter_hello/jspang/demo06/demo06_app.dart';
 
 // Tips：可以在其他地方编写界面，然后在这里修改，就可以查看到效果了，需要删掉这个界面的东西
-void main() => runApp(Demo06());
+void main() => runApp(LearnApp());
+//void main() => runApp(Demo06());
 // void main() => runApp(Demo05());
 //void main() => runApp(Demo04());
 //void main() => runApp(Demo03());
 //void main() => runApp(Demo02());
 //void main() => runApp(Demo01());
 //void main() => runApp(MyApp());
+
+//编写一个列表，保存了学习技术胖的一个列表
+const learningList = [
+  "底部导航栏",
+  "不规则底部导航栏",
+  "炫酷路由的效果",
+  "毛玻璃效果制作",
+  "保持页面状态",
+  "一个不简单的搜索功能",
+];
+
+
+class LearnApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: '跟着技术胖学习 Flutter',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: LearnListPage(),
+    );
+  }
+}
+
+class LearnListPage extends StatelessWidget {
+  const LearnListPage({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('跟技术胖学习 Flutter'),
+      ),
+      body: ListView.builder(
+        itemCount: learningList.length,
+        itemBuilder: (context, index) => ListTile(
+          title: Text('${learningList[index]}'),
+        ),
+      ),
+    );
+  }
+}
+
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
