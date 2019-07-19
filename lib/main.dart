@@ -47,7 +47,18 @@ class LearnListPage extends StatelessWidget {
   // = learningList.reversed.toList();
 
   void _listItemTapAction(int index) {
-    print('列表被点击，索引是：$index');
+    //怎么把索引再次转换回来😂
+    var value = learningList.reversed.toList()[index];
+    var targetIndex = learningList.indexOf(value);
+    print('列表被点击，索引是：$index，实际索引：$targetIndex');
+    _rounterJump(targetIndex);
+  }
+
+  void _rounterJump(int index) {
+    print("-----准备跳转");
+    MaterialPageRoute(builder: (BuildContext context) {
+      return MyHomePage(title: 'Flutter Demo Home Page');
+    });
   }
 
   @override
