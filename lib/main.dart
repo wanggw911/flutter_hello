@@ -57,6 +57,7 @@ class LearnListPage extends StatelessWidget {
         itemCount: learningList.length,
         itemBuilder: (context, index) => ListTile(
           title: Text('${learningList.reversed.toList()[index]}'),
+          trailing: Icon(Icons.arrow_forward_ios),
         ),
         separatorBuilder: (context, index) {
           return Divider(height: 0.5, color: Colors.grey.shade200);
