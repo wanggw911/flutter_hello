@@ -10,7 +10,7 @@ class FirstPage extends StatelessWidget {
       backgroundColor: Colors.blue,
       appBar: AppBar(
         title: Text('First Page', style: TextStyle(fontSize: 36.0)),
-        elevation: 0.0,
+        elevation: 4.0, //这个值是AppBar 滚动时的融合程度，一般有滚动时默认是4.0，现在我们设置成0.0，就是和也main完全融合了。
       ),
       body: Center(
         child: MaterialButton(
@@ -43,7 +43,7 @@ class SecondPage extends StatelessWidget {
         title: Text('Second Page', style: TextStyle(fontSize: 36.0)),
         backgroundColor: Colors.pinkAccent,
         leading: Container(),
-        elevation: 0.0,
+        elevation: 4.0,
       ),
       body: Center(
         child: MaterialButton(
