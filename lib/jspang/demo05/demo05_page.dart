@@ -26,7 +26,6 @@ class _KeepAliveDemoState extends State<KeepAliveDemo> with SingleTickerProvider
   //重写被释放的方法，只释放 TabController
   @override
   void dispose() {
-    // TODO: implement dispose
     _controller.dispose();
     super.dispose();
   }

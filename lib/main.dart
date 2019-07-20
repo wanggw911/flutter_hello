@@ -5,10 +5,10 @@ import 'package:flutter_hello/jspang/demo03/demo03_pages.dart';
 import 'package:flutter_hello/jspang/demo04/demo04_page.dart';
 import 'package:flutter_hello/jspang/demo05/demo05_page.dart';
 import 'package:flutter_hello/jspang/demo06/demo06_page.dart';
+import 'package:flutter_hello/jspang/demo07/demo07_page.dart';
 
 // Tips：可以在其他地方编写界面，然后在这里修改，就可以查看到效果了，需要删掉这个界面的东西
 void main() => runApp(LearnApp());
-
 
 // ------------------------------------------------------------------------
 
@@ -21,6 +21,7 @@ Map<String, Widget> learningMap = {
   "4、毛玻璃效果制作": FrostedGlassDemo(),
   "5、保持页面状态": KeepAliveDemo(),
   "6、一个不简单的搜索功能": SearchBarDemo(),
+  "7、流式布局，模拟添加照片的效果": WarpLayoutDemo(),
 };
 
 List<String> learningList() {
@@ -47,11 +48,10 @@ class LearnListPage extends StatelessWidget {
     var key = learningList()[index];
     print("点击的item是：$key");
     Widget widget = learningMap[key];
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (BuildContext context) {    
-        return widget;
-      })
-    );
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (BuildContext context) {
+      return widget;
+    }));
   }
 
   @override
@@ -66,7 +66,7 @@ class LearnListPage extends StatelessWidget {
         itemBuilder: (context, index) => ListTile(
           title: Text('${learningList()[index]}'),
           trailing: Icon(Icons.arrow_forward_ios),
-          onTap: (){
+          onTap: () {
             _listItemTapAction(index, context);
           },
         ),
