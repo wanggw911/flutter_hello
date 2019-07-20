@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 
 class ExpandStateBean {
-  var isOpen;
   var index;
-  ExpandStateBean(this.isOpen, this.index);
+  var isOpen;
+  ExpandStateBean(this.index, this.isOpen);
 }
 
 class ExpansionListDemo extends StatefulWidget {
@@ -62,7 +62,7 @@ class _ExpansionListDemoState extends State<ExpansionListDemo> {
                 ),
                 isExpanded: expandStateList[index].isOpen
               );
-           }),
+           }).toList(),
          ),
        ),
     );
