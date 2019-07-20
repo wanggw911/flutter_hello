@@ -14,13 +14,13 @@ void main() => runApp(LearnApp());
 
 //编写一个Map，保存了学习技术胖的一个列表（原来是list，但是存在需要使用if判断，才能进行跳转，比较麻烦）
 Map<String, Widget> learningMap = {
-  "1、初始flutter演示项目": MyHomePage(title: 'Flutter Demo Home Page'),
-  "2、底部导航栏": BottomnavigationWidget(),
-  "3、不规则底部导航栏": BottomAppBarDemo(),
-  "4、炫酷路由的效果": FirstPage(),
-  "5、毛玻璃效果制作": FrostedGlassDemo(),
-  "6、保持页面状态": KeepAliveDemo(),
-  "7、一个不简单的搜索功能": SearchBarDemo(),
+  "0、初始flutter演示项目": MyHomePage(title: 'Flutter Demo Home Page'),
+  "1、底部导航栏": BottomnavigationWidget(),
+  "2、不规则底部导航栏": BottomAppBarDemo(),
+  "3、炫酷路由的效果": FirstPage(),
+  "4、毛玻璃效果制作": FrostedGlassDemo(),
+  "5、保持页面状态": KeepAliveDemo(),
+  "6、一个不简单的搜索功能": SearchBarDemo(),
 };
 
 List<String> learningList() {
