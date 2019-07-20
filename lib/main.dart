@@ -15,6 +15,7 @@ void main() => runApp(LearnApp());
 // ------------------------------------------------------------------------
 
 //编写一个Map，保存了学习技术胖的一个列表（原来是list，但是存在需要使用if判断，才能进行跳转，比较麻烦）
+// TODO: 增加一个类来管理下面的Map，增加subtitle来展示Demo的主要知识点
 Map<String, Widget> learningMap = {
   "0、初始flutter演示项目": MyHomePage(title: 'Flutter Demo Home Page'),
   "1、底部导航栏": BottomnavigationWidget(),
