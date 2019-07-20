@@ -31,13 +31,15 @@ class _ClipPathDemoState extends State<ClipPathDemo> {
 class BottomCustomClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
+    // TODO: 增加一个悬浮按钮来控制贝塞尔曲线的生成，更直观地感受贝塞尔曲线
+    int value = 150;//修改这个值，来查看效果
     var firstControlPoint = Offset(size.width/2, size.height);
-    var firstEndPoint = Offset(size.width, size.height-30);
+    var firstEndPoint = Offset(size.width, size.height-value);
     var path = Path()
                 ..lineTo(0, 0)
-                ..lineTo(0, size.height-30)
+                ..lineTo(0, size.height-value)
                 ..quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy, firstEndPoint.dx, firstEndPoint.dy)
-                ..lineTo(size.width, size.height-30)
+                ..lineTo(size.width, size.height-value)
                 ..lineTo(size.width, 0);
     return path;
   }
