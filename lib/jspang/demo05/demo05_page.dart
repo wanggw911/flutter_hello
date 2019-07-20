@@ -80,8 +80,14 @@ class _TabbarPageState extends State<TabbarPage> with AutomaticKeepAliveClientMi
     });
   }
 
+  /*
+  下面👇Build 方法被标记为必须 @mustCallSuper，也就是必须调用 super.build，开始没有写，所以就报警告了⚠️
+  This method overrides a method annotated as @mustCallSuper in 'AutomaticKeepAliveClientMixin', 
+  but does not invoke the overridden method.
+   */
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
        body: Center(
          child: Column(

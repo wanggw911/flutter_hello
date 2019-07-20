@@ -79,7 +79,7 @@ class LearnListPage extends StatelessWidget {
 }
 
 // ------------------------------------------------------------------------
-// TODO: 下面是原始的Demo
+// 下面是原始的Demo
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

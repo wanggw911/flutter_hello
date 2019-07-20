@@ -2,7 +2,10 @@
 import 'package:flutter/material.dart';
 
 class EachView extends StatefulWidget {
-  String _title;
+  // 变量 _title 不加 final 报警告⚠️
+  // This class (or a class which this class inherits from) is marked as '@immutable', 
+  // but one or more of its instance fields are not final: EachView._title
+  final String _title;          
   EachView(this._title);
   @override
   _EachViewState createState() => _EachViewState();

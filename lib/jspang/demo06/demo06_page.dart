@@ -20,7 +20,7 @@ class _SearchBarDemoState extends State<SearchBarDemo> {
              onPressed: (){
                print('开始搜索');
                //这是一个全局的工具方法
-               showSearch(context: context, delegate: searchBarDelegate());
+               showSearch(context: context, delegate: SearchBarDelegate());
              },
            ),
          ],
@@ -29,7 +29,7 @@ class _SearchBarDemoState extends State<SearchBarDemo> {
   }
 }
 
-class searchBarDelegate extends SearchDelegate<String> {
+class SearchBarDelegate extends SearchDelegate<String> {
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
@@ -42,7 +42,6 @@ class searchBarDelegate extends SearchDelegate<String> {
 
   @override
   Widget buildLeading(BuildContext context) {
-    // TODO: implement buildLeading
     return IconButton(
       icon: AnimatedIcon(icon: AnimatedIcons.menu_arrow, progress: transitionAnimation),
       onPressed: () => close(context, null) 
@@ -51,7 +50,6 @@ class searchBarDelegate extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
     return Container(
       width: 100.0,
       height: 100.0,
@@ -66,7 +64,6 @@ class searchBarDelegate extends SearchDelegate<String> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // TODO: implement buildSuggestions
     final suggestionList = query.isEmpty
       ? recentSuggest
       : searchList.where((input) => input.startsWith(query)).toList();
