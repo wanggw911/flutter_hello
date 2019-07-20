@@ -35,6 +35,7 @@ class LearnApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '跟着技术胖学习 Flutter',
+      debugShowCheckedModeBanner: false, //去掉App右上角的debug图标
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
