@@ -12,7 +12,7 @@ class _ToolTipDemoState extends State<ToolTipDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('照片流式布局')),
+      appBar: AppBar(title: Text('tooltip控件实例')),
       body: Center(
         child: Tooltip(
           message: '不要碰我，我怕痒',
