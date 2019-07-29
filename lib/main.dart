@@ -13,6 +13,7 @@ import 'package:flutter_hello/jspang/demo10/demo10_page.dart';
 import 'package:flutter_hello/jspang/demo11/demo11_page.dart';
 import 'package:flutter_hello/jspang/demo12/demo12_page.dart';
 import 'package:flutter_hello/jspang/demo13/demo13_page.dart';
+import 'package:flutter_hello/listView.dart';
 
 // Tips：可以在其他地方编写界面，然后在这里修改，就可以查看到效果了，需要删掉这个界面的东西
 void main() => runApp(LearnApp());
@@ -38,6 +39,7 @@ Map<String, Widget> learningMap = {
   "11、右滑返回上一页案例": RightSlideBackDemo(),
   "12、tooltip控件实例": ToolTipDemo(),
   "13、draggable控件实例": DraggableDemo(),
+  "14、ListView控件实例": ListViewDemo(),
 };
 
 List<String> learningList() {
