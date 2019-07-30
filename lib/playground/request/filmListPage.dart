@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_hello/playground/request/engine.dart';
+// import 'package:flutter_hello/playground/request/engine.dart';
 import 'package:flutter_hello/playground/request/httpUse.dart';
 import 'package:flutter_hello/playground/request/httpUseModel.dart';
 import 'package:flutter_hello/playground/request/model.dart';
@@ -38,7 +38,7 @@ class _FilmListPageState extends State<FilmListPage> {
     courceIndex += 1;
     _requestData();
   }
-
+  
   void _requestData() {
     print("开始请求接口");
     Network.request(courceIndex).then((value){
@@ -65,13 +65,13 @@ class _FilmListPageState extends State<FilmListPage> {
   void initState() {
     super.initState();
 
-    //_refreshData();
+    _refreshData();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(title: Text('电影列表'),),
+       appBar: AppBar(title: Text('项目列表'),),
        body: Container(
          child: EasyRefresh(
            key: _easyRefreshKey,
@@ -110,17 +110,20 @@ class _FilmListPageState extends State<FilmListPage> {
             child: Image.network('${course.envelopePic}'),
           ),
           Container(
+            //decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.red)),
+            width: MediaQuery.of(context).size.width - 100,
             padding: EdgeInsets.all(10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start, //控制子元素对齐方式
               children: <Widget>[
                 Text(
                   '${course.title}', 
-                  maxLines: 2,
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                Text('导演：${course.chapterName}'),
-                Text('主演：${course.author}'),
+                Text('作者：${course.author}'),
+                Text('描述：${course.desc}', maxLines: 3, overflow: TextOverflow.ellipsis),
               ],
             ),
           ),
