@@ -13,7 +13,9 @@ import 'package:flutter_hello/jspang/demo10/demo10_page.dart';
 import 'package:flutter_hello/jspang/demo11/demo11_page.dart';
 import 'package:flutter_hello/jspang/demo12/demo12_page.dart';
 import 'package:flutter_hello/jspang/demo13/demo13_page.dart';
-import 'package:flutter_hello/listView.dart';
+import 'package:flutter_hello/playground/deviceInfo.dart';
+import 'package:flutter_hello/playground/listView.dart';
+import 'package:flutter_hello/playground/row.dart';
 
 // Tips：可以在其他地方编写界面，然后在这里修改，就可以查看到效果了，需要删掉这个界面的东西
 void main() => runApp(LearnApp());
@@ -40,6 +42,7 @@ Map<String, Widget> learningMap = {
   "12、tooltip控件实例": ToolTipDemo(),
   "13、draggable控件实例": DraggableDemo(),
   "14、ListView控件实例": ListViewDemo(),
+  "15、Row控件实例": RowDemos(),
 };
 
 List<String> learningList() {
@@ -147,8 +150,19 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  _getWH() {
+    //https://juejin.im/post/5c827600f265da2da67c5f06
+    //会报错。。。
+    // final GlobalKey globalKey = GlobalKey();
+    // final containerWidth = globalKey.currentContext.size.width;
+    // final containerHeight = globalKey.currentContext.size.height;
+    // print('Container widht is $containerWidth, height is $containerHeight');
+  }
+
   @override
   Widget build(BuildContext context) {
+    _getWH();
+    Device.getDeviceInfo(context);
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -187,6 +201,26 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.display1,
+            ),
+            Container(
+              color: Colors.red,
+              width: 414,
+              height: 20.0,
+            ),
+            Container(
+              child: Column(
+                children: <Widget>[
+                  Text('123'),
+                  Divider(color: Colors.grey, height: 1.0),
+                  Text('456'),
+                ],
+              ),
+            ),
+            CircleAvatar(
+              backgroundColor: Colors.green,
+              radius: 50.0,
+              child: Image.network('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545738629147&di=22e12a65bbc6c4123ae5596e24dbc5d3&imgtype=0&src=http%3A%2F%2Fpic30.photophoto.cn%2F20140309%2F0034034413812339_b.jpg'),
+              //child: Container(width: 100, height: 100.0, color: Colors.red),
             ),
           ],
         ),

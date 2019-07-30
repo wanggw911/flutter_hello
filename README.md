@@ -1,6 +1,6 @@
 # flutter_hello
 
-* A new Flutter project.
+* A new flutter project.
 * 学习编写 flutter 项目
 
 ## 项目运行
