@@ -6,19 +6,31 @@ class DemoModel {
   String title;
   String subTitle;
   String location;
+  bool isCollection;
 
-  DemoModel(this.title, this.subTitle, this.location);
+  DemoModel(this.title, this.subTitle, this.location, this.isCollection);
 }
 
-class ListViewDemo extends StatelessWidget {
-  final List<DemoModel> dataSource = [
-    DemoModel('John Doe', 'Lunch Invitation', '5m'),
-    DemoModel('Jane Doe', 'College fee structure', '5m'),
-    DemoModel('Delicious.ly', 'Order Confirmation', '5m'),
-    DemoModel('NewFoodForYou', 'New Recipe', '5m'),
+class ListViewDemo extends StatefulWidget {
+  ListViewDemo({Key key}) : super(key: key);
+
+  _ListViewDemoState createState() => _ListViewDemoState();
+}
+
+class _ListViewDemoState extends State<ListViewDemo> {
+  List<DemoModel> dataSource = [
+    DemoModel('John Doe', 'Lunch Invitation', '5m', false),
+    DemoModel('Jane Doe', 'College fee structure', '5m', false),
+    DemoModel('Delicious.ly', 'Order Confirmation', '5m', false),
+    DemoModel('NewFoodForYou', 'New Recipe', '5m', false),
   ];
 
-  //const ListViewDemo({Key key}) : super(key: key);
+  void _collectionAction(int index) {
+    setState(() {
+      DemoModel model = dataSource[index];
+      model.isCollection = !model.isCollection;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +41,7 @@ class ListViewDemo extends StatelessWidget {
           itemCount: dataSource.length,
           //itemExtent: 100, //设置行高
           itemBuilder: (context, index){
+            DemoModel model = dataSource[index];
             return Column(
               children: <Widget>[
                 Row(  
@@ -64,11 +77,16 @@ class ListViewDemo extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.star_border,
-                              size: 35.0,
-                              color: Colors.grey,
-                            ),
+                            child: InkWell(
+                              onTap: (){
+                                _collectionAction(index);
+                              },
+                              child: Icon(
+                                model.isCollection ? Icons.star : Icons.star_border,
+                                size: 35.0,
+                                color: model.isCollection ? Colors.yellow : Colors.grey,
+                              ),
+                            )
                           )
                         ],
                       ),

@@ -20,7 +20,7 @@ class RowDemos extends StatelessWidget {
                 Container(width: 100,height: 20.0,color: Colors.green),
               ],
             ),
-            Divider(), //可以自定义分割线的颜色
+            Divider(), //可以自定义分割线的颜色 
             Text('Row: mainAxisAlignment：MainAxisAlignment.center',),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
