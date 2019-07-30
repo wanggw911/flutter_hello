@@ -15,6 +15,10 @@ import 'package:flutter_hello/jspang/demo12/demo12_page.dart';
 import 'package:flutter_hello/jspang/demo13/demo13_page.dart';
 import 'package:flutter_hello/playground/deviceInfo.dart';
 import 'package:flutter_hello/playground/listView.dart';
+import 'package:flutter_hello/playground/request/filmListPage.dart';
+import 'package:flutter_hello/playground/request/githubRepoList.dart';
+import 'package:flutter_hello/playground/request/httpUse.dart';
+import 'package:flutter_hello/playground/request/testRequest.dart';
 import 'package:flutter_hello/playground/row.dart';
 
 // Tips：可以在其他地方编写界面，然后在这里修改，就可以查看到效果了，需要删掉这个界面的东西
@@ -43,6 +47,8 @@ Map<String, Widget> learningMap = {
   "13、draggable控件实例": DraggableDemo(),
   "14、ListView控件实例": ListViewDemo(),
   "15、Row控件实例": RowDemos(),
+  "16、电影列表上下拉刷新": FilmListPage(),
+  "17、仓库列表": GithubRepoPage(),
 };
 
 List<String> learningList() {
@@ -52,6 +58,11 @@ List<String> learningList() {
 class LearnApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    //TestRequest.decode();
+    //TestRequest.request();
+    Network.request(1);
+
     return MaterialApp(
       title: '跟着技术胖学习 Flutter',
       debugShowCheckedModeBanner: false, //去掉App右上角的debug图标
@@ -222,6 +233,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Image.network('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545738629147&di=22e12a65bbc6c4123ae5596e24dbc5d3&imgtype=0&src=http%3A%2F%2Fpic30.photophoto.cn%2F20140309%2F0034034413812339_b.jpg'),
               //child: Container(width: 100, height: 100.0, color: Colors.red),
             ),
+            Image.network('https://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p17525.webp'),
           ],
         ),
       ),
