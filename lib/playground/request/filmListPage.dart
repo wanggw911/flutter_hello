@@ -20,6 +20,8 @@ class _FilmListPageState extends State<FilmListPage> {
 
   int courceIndex = 1;
   List<Course> listOfCourse = [];
+  bool _isFirstInPage = true;
+  bool _isHaveMoreData = true; //控制是否可以加载更多
 
   void _refreshData() async {
     list.clear();
@@ -28,6 +30,11 @@ class _FilmListPageState extends State<FilmListPage> {
 
     listOfCourse.clear();
     courceIndex = 1;
+    _easyRefreshKey.currentState.waitState(() {
+      setState(() {
+        _isHaveMoreData = true;  
+      });
+    });
     _requestData();
   }
 
@@ -37,6 +44,14 @@ class _FilmListPageState extends State<FilmListPage> {
 
     courceIndex += 1;
     _requestData();
+
+    if (courceIndex == 2) {
+      _easyRefreshKey.currentState.waitState(() {
+        setState(() {
+          _isHaveMoreData = false;  
+        });
+      });
+    }
   }
   
   void _requestData() {
@@ -65,8 +80,22 @@ class _FilmListPageState extends State<FilmListPage> {
   void initState() {
     super.initState();
 
+    //1、进入界面加载数据，但是没有动画，✅
     _refreshData();
+    //2、初始化的时候，直接去call，必定会造成崩溃，因为还没build完成❌
+    //_easyRefreshKey.currentState.callRefresh();
+    //3、监听每一针绘制完成，然后再调用上面的下拉刷新❌
+    // WidgetsBinding widgetsBinding = WidgetsBinding.instance;
+    // widgetsBinding.addPersistentFrameCallback((callback) {
+    //   print('第一帧完成绘制');
+    //   if (_isFirstInPage) {
+    //     _isFirstInPage = false;
+    //     _easyRefreshKey.currentState.callRefresh();
+    //   }
+    // });
   }
+
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -87,9 +116,10 @@ class _FilmListPageState extends State<FilmListPage> {
            onRefresh: () async {
              _refreshData();
            },
-           loadMore: () async {
+           loadMore: _isHaveMoreData 
+           ? () async {
              _loadMoreData();
-           },
+           } : null,
          ),
        ),
     );
