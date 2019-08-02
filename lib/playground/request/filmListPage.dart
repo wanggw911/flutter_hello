@@ -13,7 +13,9 @@ class FilmListPage extends StatefulWidget {
 }
 
 class _FilmListPageState extends State<FilmListPage> {
-  GlobalKey<EasyRefreshState> _easyRefreshKey = new GlobalKey<EasyRefreshState>();
+  GlobalKey<EasyRefreshState> _easyRefreshKey =  GlobalKey<EasyRefreshState>();
+  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
+      
   int start = 0;  
   int count = 10;
   List<Film> list = [];
@@ -23,27 +25,25 @@ class _FilmListPageState extends State<FilmListPage> {
   bool _isFirstInPage = true;
   bool _isHaveMoreData = true; //控制是否可以加载更多
 
-  void _refreshData() async {
+  Future _refreshData() async {
     list.clear();
     start = 0;
     count = 10;
 
     listOfCourse.clear();
     courceIndex = 1;
+    await _requestData();
+
     _easyRefreshKey.currentState.waitState(() {
       setState(() {
         _isHaveMoreData = true;  
       });
     });
-    _requestData();
   }
 
-  void _loadMoreData() async {
+  Future _loadMoreData() async {
     start += 10;
     count += 10;
-
-    courceIndex += 1;
-    _requestData();
 
     if (courceIndex == 2) {
       _easyRefreshKey.currentState.waitState(() {
@@ -52,11 +52,15 @@ class _FilmListPageState extends State<FilmListPage> {
         });
       });
     }
+    else {
+      courceIndex += 1;
+      await _requestData();
+    }
   }
   
-  void _requestData() {
+  Future _requestData() async {
     print("开始请求接口");
-    Network.request(courceIndex).then((value){
+    await Network.request(courceIndex).then((value){
       HttpData httpData = value;
       setState(() {
         listOfCourse.addAll(httpData.data.datas);
@@ -104,6 +108,7 @@ class _FilmListPageState extends State<FilmListPage> {
        body: Container(
          child: EasyRefresh(
            key: _easyRefreshKey,
+           behavior: ScrollOverBehavior(),
            child: ListView.builder(
              itemCount: listOfCourse.length,
              itemBuilder: (context, index) {
@@ -113,12 +118,17 @@ class _FilmListPageState extends State<FilmListPage> {
                //return ListTile(title: Text(film.title),);
              },
            ),
+           refreshFooter: ClassicsFooter(
+             key: _footerKey,
+             loadingText: "正在加载数据，请稍等...",
+             showMore: courceIndex == 2 ? true : false,
+           ),
            onRefresh: () async {
-             _refreshData();
+             await _refreshData();
            },
            loadMore: _isHaveMoreData 
            ? () async {
-             _loadMoreData();
+             await _loadMoreData();
            } : null,
          ),
        ),

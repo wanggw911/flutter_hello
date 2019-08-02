@@ -44,7 +44,7 @@ class RowDemos extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(width: 100, height: 20.0, color: Colors.red),
-                Container( width: 100,height: 20.0,color: Colors.blue),
+                //Container( width: 100,height: 20.0,color: Colors.blue),
                 Container(width: 100,height: 20.0,color: Colors.green),
               ],
             ),

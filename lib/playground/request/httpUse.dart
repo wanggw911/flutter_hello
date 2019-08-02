@@ -3,7 +3,7 @@ import 'package:http/http.dart'as http;
 import 'dart:convert';
 
 class Network {
-  static request(int index) async {
+  static Future request(int index) async {
     var client = http.Client();
     http.Response response = await client.get('https://www.wanandroid.com/project/list/$index/json?cid=1');
     print("response.statusCode = ${response.statusCode}");
