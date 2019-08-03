@@ -16,13 +16,24 @@ import 'package:flutter_hello/jspang/demo13/demo13_page.dart';
 import 'package:flutter_hello/playground/deviceInfo.dart';
 import 'package:flutter_hello/playground/listView.dart';
 import 'package:flutter_hello/playground/request/filmListPage.dart';
+import 'package:flutter_hello/playground/request/filmListProvide.dart';
 import 'package:flutter_hello/playground/request/githubRepoList.dart';
 import 'package:flutter_hello/playground/request/httpUse.dart';
 import 'package:flutter_hello/playground/request/testRequest.dart';
 import 'package:flutter_hello/playground/row.dart';
+import 'package:provide/provide.dart';
 
 // Tips：可以在其他地方编写界面，然后在这里修改，就可以查看到效果了，需要删掉这个界面的东西
-void main() => runApp(LearnApp());
+void main() {
+  final providers = Providers()
+      ..provide(Provider<CourseProvide>.value(CourseProvide()));
+
+  return runApp(ProviderNode(
+    providers: providers,
+    child: LearnApp(),
+  ));
+
+} //=> runApp();
 // void main() => runApp(Demo10());
 
 

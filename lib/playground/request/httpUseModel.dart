@@ -95,6 +95,7 @@ class Course {
   int userId;
   int visible;
   int zan;
+  bool isSelect; //增加的测试属性
 
   Course(
       {this.apkLink,
@@ -152,6 +153,7 @@ class Course {
     userId = json['userId'];
     visible = json['visible'];
     zan = json['zan'];
+    isSelect = false; //默认设置成不选中
   }
 
   Map<String, dynamic> toJson() {

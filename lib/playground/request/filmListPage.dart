@@ -65,7 +65,7 @@ class _FilmListPageState extends State<FilmListPage> {
       setState(() {
         listOfCourse.addAll(httpData.data.datas);
       });
-    });  
+    });
 
     // var paramters = {'start' : start, 'count' : 10};
     // getFilmList(paramters).then((value) {
