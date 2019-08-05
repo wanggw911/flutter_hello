@@ -9,7 +9,14 @@ class CourseProvide with ChangeNotifier {
 
   //加载课程列表
   void loadCourseList(bool isRefresh) async {
-    courseIndex = isRefresh ? 1 : (courseIndex++);
+    if (isRefresh) {
+      courseList.clear();
+      courseIndex = 1;
+    }
+    else {
+      courseIndex++;
+    }
+
     await Network.request(courseIndex).then((value){
       HttpData httpData = value;
       courseList.addAll(httpData.data.datas);

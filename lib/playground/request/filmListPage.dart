@@ -1,10 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_hello/playground/request/filmListProvide.dart';
 // import 'package:flutter_hello/playground/request/engine.dart';
 import 'package:flutter_hello/playground/request/httpUse.dart';
 import 'package:flutter_hello/playground/request/httpUseModel.dart';
 import 'package:flutter_hello/playground/request/model.dart';
+import 'package:provide/provide.dart';
 
 class FilmListPage extends StatefulWidget {
   FilmListPage({Key key}) : super(key: key);
@@ -12,7 +14,7 @@ class FilmListPage extends StatefulWidget {
   _FilmListPageState createState() => _FilmListPageState();
 }
 
-class _FilmListPageState extends State<FilmListPage> {
+class _FilmListPageState extends State<FilmListPage> with WidgetsBindingObserver {
   GlobalKey<EasyRefreshState> _easyRefreshKey =  GlobalKey<EasyRefreshState>();
   GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
       
@@ -22,8 +24,160 @@ class _FilmListPageState extends State<FilmListPage> {
 
   int courceIndex = 1;
   List<Course> listOfCourse = [];
-  bool _isFirstInPage = true;
+  //bool _isFirstInPage = true;
   bool _isHaveMoreData = true; //控制是否可以加载更多
+
+  @override
+  void initState() {
+    super.initState();
+
+    //1、进入界面加载数据，但是没有动画，✅
+    //_refreshData();
+    //1、进入界面加载数据，但是没有动画，✅，可行但是报警告⚠️
+    //_provideRefreshData();
+    //2、初始化的时候，直接去call，必定会造成崩溃，因为还没build完成❌
+    //_easyRefreshKey.currentState.callRefresh();
+    //3、监听每一针绘制完成，然后再调用上面的下拉刷新❌
+    // WidgetsBinding widgetsBinding = WidgetsBinding.instance;
+    // widgetsBinding.addPersistentFrameCallback((callback) {
+    //   print('第一帧完成绘制');
+    //   if (_isFirstInPage) {
+    //     _isFirstInPage = false;
+    //     _easyRefreshKey.currentState.callRefresh();
+    //   }
+    // });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    //provide 管理数据，初始化请求数据的方法就写在这边
+    _provideRefreshData();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+       appBar: AppBar(title: Text('项目列表'),),
+       body: Container(
+         child: _contentListView(),
+       ),
+    );
+  }
+
+  Widget _contentListView() {
+    return Provide<CourseProvide>(builder: (context, child, value) {
+      List<Course> _courseList = Provide.value<CourseProvide>(context).courseList;
+      return EasyRefresh(
+        key: _easyRefreshKey,
+        behavior: ScrollOverBehavior(),
+        child: ListView.builder(
+          itemCount: _courseList.length,
+          itemBuilder: (context, index) {
+            return _courseCell(context, _courseList[index]);
+          },
+        ),
+        refreshFooter: ClassicsFooter(
+          key: _footerKey,
+          loadingText: "正在加载数据，请稍等...",
+          showMore: courceIndex == 2 ? true : false,
+        ),
+        onRefresh: () async {
+          await _provideRefreshData();
+          //await _refreshData();
+        },
+        loadMore: _isHaveMoreData 
+        ? () async {
+          await _provideLoadMoreData();
+          //await _loadMoreData();
+        } : null,
+      );
+    });
+  }
+
+  //课程cell
+  Widget _courseCell(BuildContext context, Course course) {
+    return Container(
+      height: 150,
+      decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey, width: 1.0))),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            width: 100,
+            height: 150,
+            //decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.red)),
+            //child: Image.network('${film.images.medium}'),
+            child: Image.network('${course.envelopePic}'),
+          ),
+          Container(
+            //decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.red)),
+            width: MediaQuery.of(context).size.width - 100,
+            padding: EdgeInsets.all(10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start, //控制子元素对齐方式
+              children: <Widget>[
+                Text(
+                  '${course.title}', 
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                Text('作者：${course.author}'),
+                Text('描述：${course.desc}', maxLines: 3, overflow: TextOverflow.ellipsis),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Padding(child: Container(), padding: EdgeInsets.all(1.0),),
+          ),
+        ],
+      ),
+    );
+  }
+
+  //电影Cell
+  Widget _filmCell(BuildContext context, Film film) {
+    Directors director = film.directors.first;
+    Casts casts = film.casts.first;
+    return Container(
+      height: 150,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            width: 100,
+            height: 150,
+            //decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.red)),
+            //child: Image.network('${film.images.medium}'),
+            child: Text('${film.images.medium}'),
+          ),
+          Container(
+            padding: EdgeInsets.all(10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start, //控制子元素对齐方式
+              children: <Widget>[
+                Text('${film.title}'),
+                Text('导演：${director.name}'),
+                Text('主演：${casts.name}'),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Future _provideRefreshData() async {
+    print("下拉刷新数据。。。");
+    await Provide.value<CourseProvide>(context).loadCourseList(true);
+  }
+
+  Future _provideLoadMoreData() async {
+    print("上拉加载更多数据。。。");
+    await Provide.value<CourseProvide>(context).loadCourseList(false);
+  }
 
   Future _refreshData() async {
     list.clear();
@@ -78,131 +232,5 @@ class _FilmListPageState extends State<FilmListPage> {
     //     list.addAll(filmList);
     //   });
     // });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    //1、进入界面加载数据，但是没有动画，✅
-    _refreshData();
-    //2、初始化的时候，直接去call，必定会造成崩溃，因为还没build完成❌
-    //_easyRefreshKey.currentState.callRefresh();
-    //3、监听每一针绘制完成，然后再调用上面的下拉刷新❌
-    // WidgetsBinding widgetsBinding = WidgetsBinding.instance;
-    // widgetsBinding.addPersistentFrameCallback((callback) {
-    //   print('第一帧完成绘制');
-    //   if (_isFirstInPage) {
-    //     _isFirstInPage = false;
-    //     _easyRefreshKey.currentState.callRefresh();
-    //   }
-    // });
-  }
-
- 
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-       appBar: AppBar(title: Text('项目列表'),),
-       body: Container(
-         child: EasyRefresh(
-           key: _easyRefreshKey,
-           behavior: ScrollOverBehavior(),
-           child: ListView.builder(
-             itemCount: listOfCourse.length,
-             itemBuilder: (context, index) {
-               return _courseCell(context, listOfCourse[index]);
-               //Film film = list[index];
-               //return _filmCell(context, film);
-               //return ListTile(title: Text(film.title),);
-             },
-           ),
-           refreshFooter: ClassicsFooter(
-             key: _footerKey,
-             loadingText: "正在加载数据，请稍等...",
-             showMore: courceIndex == 2 ? true : false,
-           ),
-           onRefresh: () async {
-             await _refreshData();
-           },
-           loadMore: _isHaveMoreData 
-           ? () async {
-             await _loadMoreData();
-           } : null,
-         ),
-       ),
-    );
-  }
-
-  Widget _courseCell(BuildContext context, Course course) {
-    return Container(
-      height: 150,
-      decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey, width: 1.0))),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            width: 100,
-            height: 150,
-            //decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.red)),
-            //child: Image.network('${film.images.medium}'),
-            child: Image.network('${course.envelopePic}'),
-          ),
-          Container(
-            //decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.red)),
-            width: MediaQuery.of(context).size.width - 100,
-            padding: EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start, //控制子元素对齐方式
-              children: <Widget>[
-                Text(
-                  '${course.title}', 
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                Text('作者：${course.author}'),
-                Text('描述：${course.desc}', maxLines: 3, overflow: TextOverflow.ellipsis),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Padding(child: Container(), padding: EdgeInsets.all(1.0),),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _filmCell(BuildContext context, Film film) {
-    Directors director = film.directors.first;
-    Casts casts = film.casts.first;
-    return Container(
-      height: 150,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            width: 100,
-            height: 150,
-            //decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.red)),
-            //child: Image.network('${film.images.medium}'),
-            child: Text('${film.images.medium}'),
-          ),
-          Container(
-            padding: EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start, //控制子元素对齐方式
-              children: <Widget>[
-                Text('${film.title}'),
-                Text('导演：${director.name}'),
-                Text('主演：${casts.name}'),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
   }
 }

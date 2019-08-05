@@ -11,7 +11,7 @@ class Network {
     if (response.statusCode == 200) {
       HttpData httpData = HttpData.fromJson(jsonString);
       httpData.data.datas.forEach((item) {
-        print("作者：${item.author}");
+        //print("作者：${item.author}");
       });
       return httpData;
     }
