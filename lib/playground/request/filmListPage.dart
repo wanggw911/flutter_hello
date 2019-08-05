@@ -15,9 +15,10 @@ class FilmListPage extends StatefulWidget {
 }
 
 class _FilmListPageState extends State<FilmListPage> with WidgetsBindingObserver {
-  GlobalKey<EasyRefreshState> _easyRefreshKey =  GlobalKey<EasyRefreshState>();
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
-      
+  GlobalKey<EasyRefreshState> _easyRefreshKey = GlobalKey<EasyRefreshState>();
+  //GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
+  //EasyRefreshController _controller;
+
   int start = 0;  
   int count = 10;
   List<Film> list = [];
@@ -30,6 +31,8 @@ class _FilmListPageState extends State<FilmListPage> with WidgetsBindingObserver
   @override
   void initState() {
     super.initState();
+
+    //_controller = EasyRefreshController();    
 
     //1、进入界面加载数据，但是没有动画，✅
     //_refreshData();
@@ -46,15 +49,31 @@ class _FilmListPageState extends State<FilmListPage> with WidgetsBindingObserver
     //     _easyRefreshKey.currentState.callRefresh();
     //   }
     // });
+
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      /// 接口请求
+      print("界面完成build。。。。");
+      _provideRefreshData();
+      //_controller.callRefresh();
+    });
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
+    print('didChangeDependencies执行了。。。');
     //provide 管理数据，初始化请求数据的方法就写在这边
-    _provideRefreshData();
+    //_provideRefreshData();
   }
+
+  // @override
+  // void dispose() {
+  //   print('准备移除所有数据。。。');
+  //   //Provide.value<CourseProvide>(context).removeAll();
+  //   _controller.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -72,17 +91,18 @@ class _FilmListPageState extends State<FilmListPage> with WidgetsBindingObserver
       return EasyRefresh(
         key: _easyRefreshKey,
         behavior: ScrollOverBehavior(),
+        //controller: _controller,
         child: ListView.builder(
           itemCount: _courseList.length,
           itemBuilder: (context, index) {
             return _courseCell(context, _courseList[index]);
           },
         ),
-        refreshFooter: ClassicsFooter(
-          key: _footerKey,
-          loadingText: "正在加载数据，请稍等...",
-          showMore: courceIndex == 2 ? true : false,
-        ),
+        // footer: Footer(
+        //   key: _footerKey,
+        //   loadingText: "正在加载数据，请稍等...",
+        //   showMore: courceIndex == 2 ? true : false,
+        // ),
         onRefresh: () async {
           await _provideRefreshData();
           //await _refreshData();
@@ -188,11 +208,11 @@ class _FilmListPageState extends State<FilmListPage> with WidgetsBindingObserver
     courceIndex = 1;
     await _requestData();
 
-    _easyRefreshKey.currentState.waitState(() {
-      setState(() {
-        _isHaveMoreData = true;  
-      });
-    });
+    // _easyRefreshKey.currentState.waitState(() {
+    //   setState(() {
+    //     _isHaveMoreData = true;  
+    //   });
+    // });
   }
 
   Future _loadMoreData() async {
@@ -200,11 +220,11 @@ class _FilmListPageState extends State<FilmListPage> with WidgetsBindingObserver
     count += 10;
 
     if (courceIndex == 2) {
-      _easyRefreshKey.currentState.waitState(() {
-        setState(() {
-          _isHaveMoreData = false;  
-        });
-      });
+      // _easyRefreshKey.currentState.waitState(() {
+      //   setState(() {
+      //     _isHaveMoreData = false;  
+      //   });
+      // });
     }
     else {
       courceIndex += 1;

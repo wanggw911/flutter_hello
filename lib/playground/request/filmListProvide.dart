@@ -8,7 +8,7 @@ class CourseProvide with ChangeNotifier {
   List<Course> courseList = [];
 
   //加载课程列表
-  void loadCourseList(bool isRefresh) async {
+  Future loadCourseList(bool isRefresh) async {
     if (isRefresh) {
       courseList.clear();
       courseIndex = 1;
@@ -30,6 +30,11 @@ class CourseProvide with ChangeNotifier {
     course.isSelect = course.isSelect;
 
     notifyListeners();
+  }
+
+  void removeAll() {
+    courseList.clear();
+    print('所有数据移除完毕。。。');
   }
 
 }
