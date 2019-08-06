@@ -14,13 +14,14 @@ import 'package:flutter_hello/jspang/demo11/demo11_page.dart';
 import 'package:flutter_hello/jspang/demo12/demo12_page.dart';
 import 'package:flutter_hello/jspang/demo13/demo13_page.dart';
 import 'package:flutter_hello/playground/deviceInfo.dart';
+import 'package:flutter_hello/playground/flutter_webview_plugin_use.dart';
 import 'package:flutter_hello/playground/listView.dart';
 import 'package:flutter_hello/playground/request/filmListPage.dart';
 import 'package:flutter_hello/playground/request/filmListProvide.dart';
 import 'package:flutter_hello/playground/request/githubRepoList.dart';
 import 'package:flutter_hello/playground/request/httpUse.dart';
-import 'package:flutter_hello/playground/request/testRequest.dart';
 import 'package:flutter_hello/playground/row.dart';
+import 'package:flutter_hello/playground/url_launcher_use.dart';
 import 'package:provide/provide.dart';
 
 // Tips：可以在其他地方编写界面，然后在这里修改，就可以查看到效果了，需要删掉这个界面的东西
@@ -60,6 +61,10 @@ Map<String, Widget> learningMap = {
   "15、Row控件实例": RowDemos(),
   "16、电影列表上下拉刷新": FilmListPage(),
   "17、仓库列表": GithubRepoPage(),
+  "18、url_launcher插件使用": UrlLaunchPage(),
+  "19、flutter_webview_plugin插件使用": FlutterWebviewPluginPage(),
+  "20、flutter_webview_plugin插件使用": ArticleDetail(),
+  "21、flutter_webview_plugin插件使用": WebViewExample(),
 };
 
 List<String> learningList() {
