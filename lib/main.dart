@@ -22,6 +22,7 @@ import 'package:flutter_hello/playground/request/githubRepoList.dart';
 import 'package:flutter_hello/playground/request/httpUse.dart';
 import 'package:flutter_hello/playground/row.dart';
 import 'package:flutter_hello/playground/url_launcher_use.dart';
+import 'package:flutter_hello/playground/webview_flutter_use.dart';
 import 'package:provide/provide.dart';
 
 // Tips：可以在其他地方编写界面，然后在这里修改，就可以查看到效果了，需要删掉这个界面的东西
@@ -65,6 +66,7 @@ Map<String, Widget> learningMap = {
   "19、flutter_webview_plugin插件使用": FlutterWebviewPluginPage(),
   "20、flutter_webview_plugin插件使用": ArticleDetail(),
   "21、flutter_webview_plugin插件使用": WebViewExample(),
+  "22、webview_flutter插件使用": NewsDetailPage(),
 };
 
 List<String> learningList() {
