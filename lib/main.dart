@@ -13,6 +13,7 @@ import 'package:flutter_hello/jspang/demo10/demo10_page.dart';
 import 'package:flutter_hello/jspang/demo11/demo11_page.dart';
 import 'package:flutter_hello/jspang/demo12/demo12_page.dart';
 import 'package:flutter_hello/jspang/demo13/demo13_page.dart';
+import 'package:flutter_hello/playground/clip.dart';
 import 'package:flutter_hello/playground/deviceInfo.dart';
 import 'package:flutter_hello/playground/flutter_webview_plugin_use.dart';
 import 'package:flutter_hello/playground/listView.dart';
@@ -49,7 +50,7 @@ Map<String, Widget> learningMap = {
   "2、不规则底部导航栏": BottomAppBarDemo(),
   "3、炫酷路由的效果": FirstPage(),
   "4、毛玻璃效果制作": FrostedGlassDemo(),
-  "5、保持页面状态": KeepAliveDemo(),
+  "5、保持页面状态-顶部横向导航栏": KeepAliveDemo(),
   "6、一个不简单的搜索功能": SearchBarDemo(),
   "7、流式布局，模拟添加照片的效果": WarpLayoutDemo(),
   "8、展开闭合案例": ExpansionTileDemo(), 
@@ -67,6 +68,7 @@ Map<String, Widget> learningMap = {
   "20、flutter_webview_plugin插件使用": ArticleDetail(),
   "21、flutter_webview_plugin插件使用": WebViewExample(),
   "22、webview_flutter插件使用": NewsDetailPage(),
+  "23、widget 裁剪": ClipSubWidgetDemo(),
 };
 
 List<String> learningList() {

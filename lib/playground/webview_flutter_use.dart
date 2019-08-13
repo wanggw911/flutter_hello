@@ -19,7 +19,7 @@ class NewsDetailPage extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.red)), //use for debug frame
         child: WebView(
-          initialUrl: 'http://www.baidu.com',
+          initialUrl: 'https://www.baidu.com',
           debuggingEnabled: true
         ),
       ) 
