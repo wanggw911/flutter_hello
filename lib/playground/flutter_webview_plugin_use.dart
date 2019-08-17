@@ -39,15 +39,11 @@ class ArticleDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: WebviewScaffold(
-        url:"https://blog.csdn.net/dickyqie",
+        url: "https://blog.csdn.net/dickyqie",
         // 登录的URL
-        appBar: new AppBar(
-          title: const Text('Widget webview'),
-        ),
-        withZoom: true,
-        // 允许网页缩放
-        withLocalStorage: true,
-        // 允许LocalStorage
+        appBar: AppBar(title: Text('Widget webview'),),
+        withZoom: true, // 允许网页缩放
+        withLocalStorage: true, // 允许LocalStorage
         withJavascript: true, // 允许执行js代码
       )
     );

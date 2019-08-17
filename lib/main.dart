@@ -8,7 +8,6 @@ import 'package:flutter_hello/jspang/demo06/demo06_page.dart';
 import 'package:flutter_hello/jspang/demo07/demo07_page.dart';
 import 'package:flutter_hello/jspang/demo08/demo08_page01.dart';
 import 'package:flutter_hello/jspang/demo09/demo09_page.dart';
-// import 'package:flutter_hello/jspang/demo10/demo10_app.dart';
 import 'package:flutter_hello/jspang/demo10/demo10_page.dart';
 import 'package:flutter_hello/jspang/demo11/demo11_page.dart';
 import 'package:flutter_hello/jspang/demo12/demo12_page.dart';
@@ -67,8 +66,9 @@ Map<String, Widget> learningMap = {
   "19、flutter_webview_plugin插件使用": FlutterWebviewPluginPage(),
   "20、flutter_webview_plugin插件使用": ArticleDetail(),
   "21、flutter_webview_plugin插件使用": WebViewExample(),
-  "22、webview_flutter插件使用": NewsDetailPage(),
+  "22、webview_flutter插件": WebviewFlutterDemo(),
   "23、widget 裁剪": ClipSubWidgetDemo(),
+  "24、url_launcher插件(跳转新界面打开网页)": UrlLaunchPage(),
 };
 
 List<String> learningList() {

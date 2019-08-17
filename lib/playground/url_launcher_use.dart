@@ -28,8 +28,10 @@ class _UrlLaunchPageState extends State<UrlLaunchPage> {
   _launchURL() async {
     const url = 'https://flutter.dev';
     if (await canLaunch(url)) {
+      print('canLaunch $url');
       await launch(url);
     } else {
+      print('Could not launch $url');
       throw 'Could not launch $url';
     }
   }
