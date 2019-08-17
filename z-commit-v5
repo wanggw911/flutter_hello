@@ -6,6 +6,9 @@ function removeRemoteRepo() {
 	cd ${currentDir}
 
 	git remote rm origin
+
+	sleep 3
+	exit 1
 }
 
 function openRemoteUrl() {
