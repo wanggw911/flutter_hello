@@ -16,6 +16,7 @@ import 'package:flutter_hello/playground/clip.dart';
 import 'package:flutter_hello/playground/deviceInfo.dart';
 import 'package:flutter_hello/playground/flutter_webview_plugin_use.dart';
 import 'package:flutter_hello/playground/listView.dart';
+import 'package:flutter_hello/playground/pageview.dart';
 import 'package:flutter_hello/playground/request/filmListPage.dart';
 import 'package:flutter_hello/playground/request/filmListProvide.dart';
 import 'package:flutter_hello/playground/request/githubRepoList.dart';
@@ -69,6 +70,7 @@ Map<String, Widget> learningMap = {
   "22、webview_flutter插件": WebviewFlutterDemo(),
   "23、widget 裁剪": ClipSubWidgetDemo(),
   "24、url_launcher插件(跳转新界面打开网页)": UrlLaunchPage(),
+  "25、PageView": PageViewPage(),
 };
 
 List<String> learningList() {
