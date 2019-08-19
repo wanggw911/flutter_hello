@@ -14,6 +14,16 @@ class _StudentListPageState extends State<StudentListPage> {
   List<Student> datasource = [];
 
   @override
+  void initState() {
+    super.initState();
+
+    //页面加载完毕请求数据
+    WidgetsBinding.instance.addPostFrameCallback((_){ 
+      _loadLocationData();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -57,6 +67,13 @@ class _StudentListPageState extends State<StudentListPage> {
       datasource.add(student);
     });
     addStudentToDB(student);
+  }
+
+  void _loadLocationData() async {
+    var list = await StudentDB.selectAll();
+    setState(() {
+      datasource.addAll(list);
+    });
   }
 
   void addStudentToDB(Student student) {

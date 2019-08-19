@@ -35,4 +35,14 @@ class StudentDB {
   //操作一：删
   //操作一：改
   //操作一：查
+  static Future<List<Student>> selectAll() async {
+    List<Student> list = [];
+    var database = await DatabaseHander.shared.db;
+    var selectSql = 'select * from $table';
+    List<Map> datalist = await database.rawQuery(selectSql);
+    datalist.forEach((item) {
+      list.add(Student.fromJson(item));
+    });
+    return list;
+  }
 }
