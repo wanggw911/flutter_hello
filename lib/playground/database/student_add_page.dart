@@ -32,9 +32,9 @@ class _StudentAddPageState extends State<StudentAddPage> {
           },
           child: Column(
             children: <Widget>[
-              _inputItemContent("student name", Icon(Icons.account_circle), _nameTEController),
-              _inputItemContent("student age", Icon(Icons.security), _ageTEController),
-              _inputItemContent("student grade", Icon(Icons.security), _greadeTEController),
+              _inputItemContent("student name", TextInputType.text, Icon(Icons.account_circle), _nameTEController),
+              _inputItemContent("student age", TextInputType.number, Icon(Icons.security), _ageTEController),
+              _inputItemContent("student grade", TextInputType.number, Icon(Icons.security), _greadeTEController),
               _buttonContent()
             ],
           ),
@@ -42,21 +42,24 @@ class _StudentAddPageState extends State<StudentAddPage> {
     );
   }
 
-  Widget _inputItemContent(String placeholder, Icon icon, TextEditingController controller) {
+  Widget _inputItemContent(String placeholder, TextInputType keyboardType, Icon icon, TextEditingController controller) {
     return Container(
-      height: 40,
+      height: 70,
       decoration: BoxDecoration(
         border: Border(bottom: BorderSide(width: 1.0, color: Colors.grey[200])),
       ), 
       child: Center(
+        // [TextFormField使用](https://blog.csdn.net/yuzhiqiang_1993/article/details/88204031)
         child: TextFormField(
+          keyboardType: keyboardType,
           controller: controller,
           onEditingComplete: () {
             
           },
           decoration: InputDecoration(
             prefixIcon: icon,
-            hintText: "$placeholder",
+            //hintText: "$placeholder",
+            labelText: "$placeholder",
             border: InputBorder.none
           ),
           style: TextStyle(

@@ -11,7 +11,7 @@ class StudentListPage extends StatefulWidget {
 }
 
 class _StudentListPageState extends State<StudentListPage> {
-  List<Student> datasource = [];
+  List<Student> _datasource = [];
 
   @override
   void initState() {
@@ -21,7 +21,7 @@ class _StudentListPageState extends State<StudentListPage> {
     WidgetsBinding.instance.addPostFrameCallback((_){ 
       _loadLocationData();
       //_testInsetConflictData();
-      _testInsetConflictData02();
+      //_testInsetConflictData02();
     });
   }
 
@@ -45,12 +45,12 @@ class _StudentListPageState extends State<StudentListPage> {
 
   Widget _bodyContent() {
     return ListView.separated(
-      itemCount: datasource.length,
+      itemCount: _datasource.length,
       separatorBuilder: (context, index) {
         return Divider(height: 0.5, color: Colors.grey.shade200);
       },
       itemBuilder: (context, index) {
-        Student student = datasource[index];
+        Student student = _datasource[index];
         return ListTile(
           title: Text('${student.name}'),
           subtitle: Text('年龄：${student.age}，年级：${student.grade}'),
@@ -67,8 +67,13 @@ class _StudentListPageState extends State<StudentListPage> {
     );
 
     Student student = result as Student;
+    if (student == null) {
+      print('student is null, can not insert to database!');
+      return;
+    }
+
     setState(() {
-      datasource.add(student);
+      _datasource.add(student);
     });
     addStudentToDB(student);
   }
@@ -76,7 +81,7 @@ class _StudentListPageState extends State<StudentListPage> {
   void _loadLocationData() async {
     var list = await StudentDB.selectAll();
     setState(() {
-      datasource.addAll(list);
+      _datasource.addAll(list);
     });
   }
 
