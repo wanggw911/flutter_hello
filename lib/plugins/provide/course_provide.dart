@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_hello/playground/request/httpUse.dart';
-import 'package:flutter_hello/playground/request/httpUseModel.dart';
+import 'package:flutter_hello/plugins/http/http_model.dart';
+import 'package:flutter_hello/plugins/http/http_use.dart';
 
 class CourseProvide with ChangeNotifier {
   int courseIndex = 1;

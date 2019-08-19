@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hello/index_page.dart';
-import 'package:flutter_hello/playground/request/filmListProvide.dart';
-import 'package:flutter_hello/playground/request/httpUse.dart';
 import 'package:provide/provide.dart';
+import 'package:flutter_hello/index_page.dart';
+import 'package:flutter_hello/plugins/http/http_use.dart';
+import 'package:flutter_hello/plugins/provide/course_provide.dart';
 
 void main() {
   final providers = Providers()

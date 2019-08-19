@@ -1,6 +1,6 @@
-import 'package:flutter_hello/playground/request/httpUseModel.dart';
-import 'package:http/http.dart'as http;
 import 'dart:convert';
+import 'package:http/http.dart'as http;
+import 'package:flutter_hello/plugins/http/http_model.dart';
 
 class Network {
   static Future request(int index) async {

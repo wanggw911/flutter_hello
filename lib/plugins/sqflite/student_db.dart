@@ -1,7 +1,6 @@
-
-import 'package:flutter_hello/playground/database/database_hander.dart';
-import 'package:flutter_hello/playground/database/student_model.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:flutter_hello/plugins/sqflite/database_hander.dart';
+import 'package:flutter_hello/plugins/sqflite/student_model.dart';
 
 class StudentDB {
   static final String table = 'Student';

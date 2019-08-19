@@ -1,6 +1,6 @@
-import 'package:flutter_hello/playground/database/student_db.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart'; //join method need import
+import 'package:flutter_hello/plugins/sqflite/student_db.dart';
 
 class DatabaseHander {
   static final DatabaseHander shared = DatabaseHander();

@@ -39,7 +39,7 @@ class JSPangLearnListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('跟着技术胖学习Flutter01')),
+      appBar: AppBar(title: Text('技术胖博客')),
       body: ListView.separated(
         itemCount: learningMap.keys.length,
         itemBuilder: (context, index) => ListTile(

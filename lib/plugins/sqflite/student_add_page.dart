@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter_hello/playground/database/student_model.dart';
+import 'package:flutter_hello/plugins/sqflite/student_model.dart';
+
 
 class StudentAddPage extends StatefulWidget {
   StudentAddPage({Key key}) : super(key: key);

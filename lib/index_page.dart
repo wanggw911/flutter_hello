@@ -2,7 +2,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hello/jspang/jspang_list_page.dart';
-import 'package:flutter_hello/playground/playground_list_page.dart';
+import 'package:flutter_hello/plugins/plugin_list_page.dart';
+import 'package:flutter_hello/widget/widget_list_page.dart';
 
 class IndexPage extends StatefulWidget {
   IndexPage({Key key}) : super(key: key);
@@ -11,7 +12,7 @@ class IndexPage extends StatefulWidget {
 }
 
 class _IndexPageState extends State<IndexPage> {
-  var _tabIndex = 1;
+  var _tabIndex = 0;
   PageController _pageController;
 
   final List<BottomNavigationBarItem> bottomTabs = [
@@ -20,14 +21,19 @@ class _IndexPageState extends State<IndexPage> {
       title: Text("jspang")
     ),
     BottomNavigationBarItem(
-      icon: Icon(CupertinoIcons.search),
-      title: Text("playground")
+      icon: Icon(CupertinoIcons.minus_circled),
+      title: Text("plugins")
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(CupertinoIcons.car),
+      title: Text("widget")
     ),
   ];
 
   final List<Widget> _tabPagess = [
     JSPangLearnListPage(),
-    PlaygroundListPage(),
+    PluginListPage(),
+    WidgetListPage(),
   ];
 
   @override

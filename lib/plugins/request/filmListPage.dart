@@ -1,12 +1,11 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_hello/playground/request/filmListProvide.dart';
-// import 'package:flutter_hello/playground/request/engine.dart';
-import 'package:flutter_hello/playground/request/httpUse.dart';
-import 'package:flutter_hello/playground/request/httpUseModel.dart';
-import 'package:flutter_hello/playground/request/model.dart';
+import 'package:flutter_hello/plugins/http/http_model.dart';
+import 'package:flutter_hello/plugins/http/http_use.dart';
+import 'package:flutter_hello/plugins/provide/course_provide.dart';
+import 'package:flutter_hello/plugins/request/model.dart';
 import 'package:provide/provide.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class FilmListPage extends StatefulWidget {
   FilmListPage({Key key}) : super(key: key);

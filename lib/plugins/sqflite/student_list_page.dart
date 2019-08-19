@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_hello/playground/database/student_add_page.dart';
-import 'package:flutter_hello/playground/database/student_db.dart';
-import 'package:flutter_hello/playground/database/student_model.dart';
+import 'package:flutter_hello/plugins/sqflite/student_add_page.dart';
+import 'package:flutter_hello/plugins/sqflite/student_db.dart';
+import 'package:flutter_hello/plugins/sqflite/student_model.dart';
 
 class StudentListPage extends StatefulWidget {
   StudentListPage({Key key}) : super(key: key);
