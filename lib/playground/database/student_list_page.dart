@@ -20,7 +20,8 @@ class _StudentListPageState extends State<StudentListPage> {
     //页面加载完毕请求数据
     WidgetsBinding.instance.addPostFrameCallback((_){ 
       _loadLocationData();
-      _testInsetConflictData();
+      //_testInsetConflictData();
+      _testInsetConflictData02();
     });
   }
 
@@ -96,6 +97,25 @@ class _StudentListPageState extends State<StudentListPage> {
     student = Student(id: 3, name: 'Mike', age: 10, grade: 4);
     StudentDB.insertWith(student);
 
+    list = await StudentDB.selectAll();
+    list.forEach((item) {
+      print(item.toMap().toString());
+    });
+  }
+
+  void _testInsetConflictData02() async {
+    Student student = Student(id: 4, name: 'Jike2', age: 15, grade: 7);
+    StudentDB.insertWith(student);
+
+    var list = await StudentDB.selectAll();
+    list.forEach((item) {
+      print(item.toMap().toString());
+    });
+
+    print('-----');
+    student = Student(id: 4, name: 'Mike2', age: 10, grade: 4);
+    StudentDB.rawInsertWith(student);
+    
     list = await StudentDB.selectAll();
     list.forEach((item) {
       print(item.toMap().toString());

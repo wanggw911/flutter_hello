@@ -25,12 +25,33 @@ class StudentDB {
   static Future rawInsertWith(Student student) async {
     var database = await DatabaseHander.shared.db;
     await database.transaction((txn) async {
+      //✅：不考虑主键重复的情况
+      // var insertSql = '''
+      // insert into $table($name, $age, $grade)
+      // values(?, ?, ?)
+      // ''';
+      // var insertId = await txn.rawInsert(insertSql, [student.name, student.age, student.grade]);
+      // print('插入数据一条，student id：$insertId');
+
+      //✅：replace into
       var insertSql = '''
-      insert into $table($name, $age, $grade)
-      values(?, ?, ?)
+      replace into $table($id, $name, $age, $grade) 
+      values(?, ?, ?, ?)
       ''';
-      var id = await txn.rawInsert(insertSql, [student.name, student.age, student.grade]);
-      print('插入数据一条，student id：$id');
+      txn.execute(insertSql, [student.id, student.name, student.age, student.grade]);
+
+      /* ❌ 不支持 insert ignore 的用法
+        DB Error: 1 "near "ignore": syntax error"
+        DB Query: insert ignore into Student(id, name, age, grade)values(?, ?, ?, ?)
+        DB Path: /Users/dd01/Library/Developer/CoreSimulator/Devices/2D785F41-93A4-482D-A137-0C66DAE6BB00/data/Containers/Data/Application/94483C1D-4A4B-4B86-BA15-E53A24E09EAF/Documents/hello.db
+       */
+      // var insertSql = '''
+      // insert ignore into $table($id, $name, $age, $grade) 
+      // values(?, ?, ?, ?)
+      // ''';
+      //var insertId = await txn.rawInsert(insertSql, [student.id, student.name, student.age, student.grade]);
+      //print('插入数据一条，student id：$insertId');
+      
     });
   }
 
