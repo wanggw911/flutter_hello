@@ -1,6 +1,7 @@
 
 import 'package:flutter_hello/playground/database/database_hander.dart';
 import 'package:flutter_hello/playground/database/student_model.dart';
+import 'package:sqflite/sqflite.dart';
 
 class StudentDB {
   static final String table = 'Student';
@@ -36,7 +37,11 @@ class StudentDB {
   static Future insertWith(Student student) async {
     var database = await DatabaseHander.shared.db;
     await database.transaction((txn) async {
-      var id = await txn.insert(table, student.toMap());
+      //插入数据方式一：不考虑可能出现的冲突情况
+      //var id = await txn.insert('$table', student.toMap());
+      //print('插入数据一条，student id：$id');
+      //插入数据方式二：考虑主键冲突的情况，replace就是更新
+      var id = await txn.insert('$table', student.toMap(), conflictAlgorithm: ConflictAlgorithm.replace);
       print('插入数据一条，student id：$id');
     });
   }
