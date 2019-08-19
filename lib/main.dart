@@ -12,7 +12,6 @@ void main() {
     providers: providers,
     child: LearnApp(),
   ));
-
 } 
 
 class LearnApp extends StatelessWidget {
