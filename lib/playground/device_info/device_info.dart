@@ -1,5 +1,3 @@
-import 'dart:io';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -12,6 +10,9 @@ class Device {
 
   static void getDeviceInfo(BuildContext context) {
     /*
+    直接通过下面的参数来判断是否是全面屏
+    MediaQuery.of(context).padding.bottom
+
     8Plus:
       flutter: 屏幕的宽高：414.0, 736.0
       flutter: 状态栏的宽高：20.0
