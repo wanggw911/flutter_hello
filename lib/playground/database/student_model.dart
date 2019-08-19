@@ -12,7 +12,7 @@ class Student {
     grade = json['grade'];
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toMap() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['name'] = this.name;
     data['age'] = this.age;

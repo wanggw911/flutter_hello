@@ -42,9 +42,11 @@ class _StudentListPageState extends State<StudentListPage> {
   }
 
   Widget _bodyContent() {
-    return ListView.builder(
+    return ListView.separated(
       itemCount: datasource.length,
-      itemExtent: 20,
+      separatorBuilder: (context, index) {
+        return Divider(height: 0.5, color: Colors.grey.shade200);
+      },
       itemBuilder: (context, index) {
         Student student = datasource[index];
         return ListTile(
@@ -78,5 +80,6 @@ class _StudentListPageState extends State<StudentListPage> {
 
   void addStudentToDB(Student student) {
     StudentDB.insertWith(student);
+    //StudentDB.rawInsertWith(student);
   }
 }

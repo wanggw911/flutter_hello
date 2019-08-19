@@ -20,7 +20,8 @@ class StudentDB {
   }
 
   //操作一：增
-  static Future insertWith(Student student) async {
+
+  static Future rawInsertWith(Student student) async {
     var database = await DatabaseHander.shared.db;
     await database.transaction((txn) async {
       var insertSql = '''
@@ -28,6 +29,14 @@ class StudentDB {
       values(?, ?, ?)
       ''';
       var id = await txn.rawInsert(insertSql, [student.name, student.age, student.grade]);
+      print('插入数据一条，student id：$id');
+    });
+  }
+
+  static Future insertWith(Student student) async {
+    var database = await DatabaseHander.shared.db;
+    await database.transaction((txn) async {
+      var id = await txn.insert(table, student.toMap());
       print('插入数据一条，student id：$id');
     });
   }
