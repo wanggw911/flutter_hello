@@ -11,17 +11,17 @@ class IndexPage extends StatefulWidget {
 }
 
 class _IndexPageState extends State<IndexPage> {
-  var _tabIndex = 0;
+  var _tabIndex = 1;
   PageController _pageController;
 
   final List<BottomNavigationBarItem> bottomTabs = [
     BottomNavigationBarItem(
       icon: Icon(CupertinoIcons.home),
-      title: Text("技术胖1")
+      title: Text("jspang")
     ),
     BottomNavigationBarItem(
       icon: Icon(CupertinoIcons.search),
-      title: Text("flutter操场")
+      title: Text("playground")
     ),
   ];
 
