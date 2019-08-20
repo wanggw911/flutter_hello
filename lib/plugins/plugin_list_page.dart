@@ -7,10 +7,10 @@ import 'package:flutter_hello/plugins/url_launcher/url_launcher_use.dart';
 import 'package:flutter_hello/plugins/webview_flutter/webview_flutter_use.dart';
 
 List<Example> learningList = [
-  Example(title: '1、url_launcher', description: '跳转新界面打开网页', demoPage: UrlLaunchPage()),
-  Example(title: '2、webview_flutter', description: '', demoPage: WebviewFlutterDemo()),
-  Example(title: '3、flutter_webview_plugin', description: '', demoPage: FlutterWebviewPluginPage()),
-  Example(title: '4、sqflite 数据库', description: '', demoPage: StudentListPage()),
+  Example(title: '1、url_launcher', description: 'open url in new page or use safari open', demoPage: UrlLaunchPage()),
+  Example(title: '2、webview_flutter', description: 'recommend', demoPage: WebviewFlutterDemo()),
+  Example(title: '3、flutter_webview_plugin', description: 'unrecommend, may cause some strange problem', demoPage: FlutterWebviewPluginPage()),
+  Example(title: '4、sqflite', description: 'flutter database plugin', demoPage: StudentListPage()),
 ];
 
 class PluginListPage extends StatelessWidget {

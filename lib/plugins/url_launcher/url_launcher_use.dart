@@ -13,24 +13,49 @@ class _UrlLaunchPageState extends State<UrlLaunchPage> {
     return Scaffold(
       appBar: AppBar(title: Text("urlLaunch使用"),),
       body: Container(
-       child: Center(
-         child: RaisedButton(
-          onPressed: _launchURL,
-          child: Text('Show Flutter homepage'),
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              Container(height: 20),
+              Container(
+                width: 300,
+                height: 50,
+                child: RaisedButton(
+                  onPressed: _launchURLInNewPage,
+                  child: Text('show flutter homepage in new webpage'),
+                ),
+              ),
+              Container(height: 20),
+              Container(
+                width: 300,
+                height: 50,
+                child: RaisedButton(
+                  onPressed: _launchURLInSafari,
+                  child: Text('show flutter homepage in safari'),
+                ),
+              ),
+            ],
+          ),
         ),
-       ),
-    ),
+      ),
     );
   }
 
-  ///url_launcher，使用了另外一个窗口来展示网页内容
-  _launchURL() async {
+  _launchURLInNewPage() async {
+    //使用了另外一个窗口来展示网页内容
     const url = 'https://flutter.dev';
     if (await canLaunch(url)) {
-      print('canLaunch $url');
       await launch(url);
     } else {
-      print('Could not launch $url');
+      throw 'Could not launch $url';
+    }
+  }
+
+  _launchURLInSafari() async {
+    const url = 'https://flutter.dev';
+    if (await canLaunch(url)) {
+      await launch(url, forceSafariVC: false);
+    } else {
       throw 'Could not launch $url';
     }
   }
