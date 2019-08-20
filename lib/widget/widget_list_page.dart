@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hello/widget/circle_widget.dart';
 import 'package:flutter_hello/widget/clip_subview.dart';
+import 'package:flutter_hello/widget/icon_enumerate.dart';
 import 'package:flutter_hello/widget/listView.dart';
 import 'package:flutter_hello/widget/pageview.dart';
 import 'package:flutter_hello/widget/row.dart';
@@ -11,6 +12,7 @@ Map<String, Widget> learningMap = {
   "3、PageView": PageViewPage(),
   "4、CircleWidget": CircleWidgetPage(),
   "5、Widget 裁剪": ClipSubWidgetDemo(),
+  "6、CupertinoIcons Enumerate": IconsEnumerateListPage(),
 };
 
 List<String> learningList() {
