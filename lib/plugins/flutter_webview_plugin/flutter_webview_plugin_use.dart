@@ -10,97 +10,63 @@ class FlutterWebviewPluginPage extends StatefulWidget {
 }
 
 class _FlutterWebviewPluginPageState extends State<FlutterWebviewPluginPage> {
+  /* 
+  [【Flutter学习】基本组件之Webview组件](https://www.cnblogs.com/lxlx1798/p/11371209.html)
+  webview并不存在于widget树中，所以你不能在webview中使用如snackbars, dialogs ...
+  ⚠️：好像没找到 cangoback 的API
+  */
+  FlutterWebviewPlugin flutterWebviewPlugin = FlutterWebviewPlugin();
+  
   @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-  title: 'Flutter WebView Demo',
-  theme: new ThemeData(
-    primarySwatch: Colors.blue,
-  ),
-  routes: {
-    //'/': (_) => const MyHomePage(title: 'Flutter WebView Demo'),
-    '/widget': (_) => new WebviewScaffold(
-      url: 'www.baidu.com',
-      appBar: new AppBar(
-        title: const Text('Widget webview'),
-      ),
-      withZoom: true,
-      withLocalStorage: true,
-    
-    ),
-  },
-);
+  void initState() {
+    super.initState();
+
+    _listenWebLoadState();
   }
-}
 
-
-class ArticleDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: WebviewScaffold(
-        url: "https://blog.csdn.net/dickyqie",
-        // 登录的URL
-        appBar: AppBar(title: Text('Widget webview'),),
-        withZoom: true, // 允许网页缩放
-        withLocalStorage: true, // 允许LocalStorage
-        withJavascript: true, // 允许执行js代码
-      )
+    return WebviewScaffold(
+      appBar: AppBar(
+        title: Text('flutter_webview_plugin usage'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: _navigationGobackAction,
+        ),
+      ),
+      url: "https://www.baidu.com",
+      scrollBar: true,
+      withZoom: true, // 允许网页缩放
+      withLocalStorage: true, // 允许LocalStorage
+      withJavascript: true, // 允许执行js代码
     );
   }
-}
 
-class WebViewExample extends StatefulWidget {
-   @override
-   _WebViewExampleState createState() => _WebViewExampleState();
- }
- 
- class _WebViewExampleState extends State<WebViewExample> {
-   TextEditingController controller = TextEditingController();
-   FlutterWebviewPlugin flutterWebviewPlugin = FlutterWebviewPlugin();
-   var urlString = "https://google.com";
- 
-   launchUrl() {
-     setState(() {
-       urlString = controller.text;
-       flutterWebviewPlugin.reloadUrl(urlString);
-     });
-   }
- 
-   @override
-   void initState() {
-     super.initState();
- 
-     flutterWebviewPlugin.onStateChanged.listen((WebViewStateChanged wvs) {
-       print(wvs.type);
-     });
-   }
- 
-   @override
-   Widget build(BuildContext context) {
-     return WebviewScaffold(
-       appBar: AppBar(
-         title: TextField(
-           autofocus: false,
-           controller: controller,
-           textInputAction: TextInputAction.go,
-           onSubmitted: (url) => launchUrl(),
-           style: TextStyle(color: Colors.white),
-           decoration: InputDecoration(
-             border: InputBorder.none,
-             hintText: "Enter Url Here",
-             hintStyle: TextStyle(color: Colors.white),
-           ),
-         ),
-         actions: <Widget>[
-           IconButton(
-             icon: Icon(Icons.navigate_next),
-             onPressed: () => launchUrl(),
-           )
-         ],
-       ),
-       url: urlString,
-       withZoom: false,
-     );
-   }
- }
+  void _listenWebLoadState() {
+    flutterWebviewPlugin.onStateChanged.listen((WebViewStateChanged webViewState) async {
+      switch (webViewState.type) {
+        case WebViewState.shouldStart:
+          print('WebViewState.shouldStart');
+          break;
+        case WebViewState.startLoad:
+          print('WebViewState.startLoad');
+          break;
+        case WebViewState.finishLoad:
+          print('WebViewState.finishLoad');
+          break;
+        case WebViewState.abortLoad:
+          print('WebViewState.abortLoad');
+          break;
+      }
+    });
+  }
+
+  void _webviewReload() {
+    flutterWebviewPlugin.reload();
+  }
+
+  void _navigationGobackAction() {
+    //flutterWebviewPlugin.goBack();
+    Navigator.pop(context);
+  }
+}
