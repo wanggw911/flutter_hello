@@ -41,7 +41,7 @@ class _MaterialIconsShowPageState extends State<MaterialIconsShowPage> {
           children: <Widget>[
             Icon(map.values.first as IconData),
             Container(
-              padding: EdgeInsets.only(top: 10),
+              padding: EdgeInsets.only(top: 5),
               child: Text(
                 '${map.keys.first}', 
                 maxLines: 2,

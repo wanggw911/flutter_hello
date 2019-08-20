@@ -38,7 +38,9 @@ class _RightSlideBackDemoState extends State<RightSlideBackDemo> {
 
   CupertinoNavigationBar buildNavigationBar(BuildContext context) {
     return CupertinoNavigationBar(
+        middle: Text('iOS风格导航栏'),
         trailing: CupertinoButton(
+          padding: EdgeInsets.all(10),
           child: Text('Save', style: TextStyle(color: CupertinoColors.activeBlue)),
           onPressed: () => Navigator.pop(context),
         ));

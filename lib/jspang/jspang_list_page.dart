@@ -13,6 +13,7 @@ import 'package:flutter_hello/jspang/demo10/demo10_page.dart';
 import 'package:flutter_hello/jspang/demo11/demo11_page.dart';
 import 'package:flutter_hello/jspang/demo12/demo12_page.dart';
 import 'package:flutter_hello/jspang/demo13/demo13_page.dart';
+import 'package:flutter_hello/jspang/jspang_describe_page.dart';
 import 'package:flutter_hello/list_model.dart';
 
 List<Example> learningList = [
@@ -26,7 +27,7 @@ List<Example> learningList = [
   Example(title: '8、展开闭合案例', description: '', demoPage: ExpansionTileDemo()),
   Example(title: '9、贝塞尔曲线切割', description: '', demoPage: ClipPathDemo()),
   Example(title: '10、打开应用的闪屏动画案例', description: '代码报错了，还没解决', demoPage: SplashScreenDemo()),
-  Example(title: '11、右滑返回上一页案例', description: 'cupertinoNavigationBar button title is being cut', demoPage: RightSlideBackDemo()),
+  Example(title: '11、右滑返回上一页案例', description: '', demoPage: RightSlideBackDemo()),
   Example(title: '12、tooltip控件实例', description: '', demoPage: ToolTipDemo()),
   Example(title: '13、draggable控件实例', description: '', demoPage: DraggableDemo()),
 ];
@@ -37,12 +38,16 @@ class JSPangLearnListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('技术胖博客')),
-      floatingActionButton: new FloatingActionButton(
-        child: new Icon(Icons.question_answer),
-        onPressed: (){
-
-        },
+      appBar: AppBar(
+        title: Text('技术胖博客'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.help_outline, color: Colors.white),
+            onPressed: () {
+              _goDescribePage(context);
+            },
+          )
+        ],
       ),
       body: ListView.separated(
         itemCount: learningList.length,
@@ -69,6 +74,14 @@ class JSPangLearnListPage extends StatelessWidget {
     Navigator.of(context).push(
       MaterialPageRoute(builder: (BuildContext context) {
         return widget;
+      })
+    );
+  }
+
+  void _goDescribePage(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (BuildContext context) {
+        return AboutJSPangPage();
       })
     );
   }

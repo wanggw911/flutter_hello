@@ -22,7 +22,7 @@ class _IndexPageState extends State<IndexPage> {
     ),
     BottomNavigationBarItem(
       icon: Icon(CupertinoIcons.car_detailed),
-      title: Text("plugins")
+      title: Text("plugin")
     ),
     BottomNavigationBarItem(
       icon: Icon(CupertinoIcons.train_style_one),
