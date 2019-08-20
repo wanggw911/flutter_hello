@@ -12,7 +12,7 @@ class _AboutJSPangPageState extends State<AboutJSPangPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(title: Text('关于技术胖'),),
+       appBar: AppBar(title: Text('关于技术胖博客例子'),),
        body: _content(),
     );
   }
