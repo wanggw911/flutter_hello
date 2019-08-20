@@ -16,9 +16,9 @@ List<Example> learningList = [
   Example(title: '3、PageView', description: '', demoPage: PageViewPage()),
   Example(title: '4、CircleWidget', description: '', demoPage: CircleWidgetPage()),
   Example(title: '5、Widget Clip', description: 'clip sub widget', demoPage: ClipSubWidgetDemo()),
-  Example(title: '6、GridView', description: 'show all cupertino icons', demoPage: GridViewDemoPage()),
-  Example(title: '7、Cupertino Icons', description: '', demoPage: IconsEnumerateListPage()),
-  Example(title: '8、Material Icons', description: 'use gridView show all material icons', demoPage: MaterialIconsShowPage()),  
+  Example(title: '6、Cupertino Icons', description: 'gridView show all cupertino icons', demoPage: GridViewDemoPage()),
+  //Example(title: '7、Cupertino Icons', description: '', demoPage: IconsEnumerateListPage()),
+  Example(title: '7、Material Icons', description: 'gridView show all material icons', demoPage: MaterialIconsShowPage()),  
 ];
 
 class WidgetListPage extends StatelessWidget {

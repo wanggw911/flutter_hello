@@ -11,7 +11,7 @@ class _UrlLaunchPageState extends State<UrlLaunchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("urlLaunch使用"),),
+      appBar: AppBar(title: Text("urlLaunch usage"),),
       body: Container(
         child: Center(
           child: Column(

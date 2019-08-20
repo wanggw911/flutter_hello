@@ -18,7 +18,7 @@ class _WebviewFlutterDemoState extends State<WebviewFlutterDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('webview_flutter插件使用'),
+        title: Text('webview_flutter usage'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           onPressed: _navigationGobackAction,

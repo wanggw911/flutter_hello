@@ -10,7 +10,7 @@ class _MaterialIconsShowPageState extends State<MaterialIconsShowPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('MaterialIcons（985 Items）'),),
+      appBar: AppBar(title: Text('MaterialIcons（Total：985）'),),
       body: _content(),
     );
   }

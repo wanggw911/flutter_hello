@@ -12,7 +12,7 @@ class _GridViewDemoPageState extends State<GridViewDemoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('CupertinoIcons'),),
+      appBar: AppBar(title: Text('CupertinoIcons（Total：136）'),),
       body: _content(),
     );
   }
@@ -43,8 +43,13 @@ class _GridViewDemoPageState extends State<GridViewDemoPage> {
           children: <Widget>[
             Icon(map.values.first as IconData),
             Container(
-              padding: EdgeInsets.only(top: 10),
-              child: Text('${map.keys.first}'),
+              padding: EdgeInsets.only(top: 5),
+              child: Text(
+                '${map.keys.first}',
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 13),
+              ),
             )
           ],
         ),

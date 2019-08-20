@@ -39,7 +39,7 @@ class JSPangLearnListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('技术胖博客'),
+        title: Text('JSPang Demos'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.help_outline, color: Colors.white),
