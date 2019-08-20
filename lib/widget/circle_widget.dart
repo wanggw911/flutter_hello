@@ -6,6 +6,13 @@ class CircleWidgetPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('CircleWidgetDemo'),),
+      body: _content(),
+    );
+  }
+
+  Widget _content() {
     return Container(
       child: Column(
         children: <Widget>[

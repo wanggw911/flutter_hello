@@ -12,10 +12,7 @@ class ClipSubWidgetDemo extends StatelessWidget {
         decoration: BoxDecoration(color: Colors.blue),
         child: Column(
           children: <Widget>[
-            Container(
-              height: 50,
-              decoration: BoxDecoration(color: Colors.green),
-            ),
+            Container(height: 100,),
             ClipRRect( //剪裁为圆角矩形
               borderRadius: BorderRadius.circular(30.0),
               child: Container(

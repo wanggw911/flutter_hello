@@ -14,7 +14,7 @@ class _PageViewPageState extends State<PageViewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('页面'),),
+      appBar: AppBar(title: Text('PageView（vertical scroll）'),),
       body: Container(
        child: PageView(
           controller: _controller,
