@@ -17,33 +17,50 @@ class _WebviewFlutterDemoState extends State<WebviewFlutterDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('webview_flutter插件使用'),),
-      body: Container(
-        decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.red)), //use for debug frame
+      appBar: AppBar(
+        title: Text('webview_flutter插件使用'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: _navigationGobackAction,
+        ),
+      ),
+      body: _webViewContent(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _loadwebView,
+        tooltip: 'Increment',
+        child: Icon(Icons.send),
+      ), // 
+    );
+  }
+
+  Widget _webViewContent() {
+    return Container(
+        //decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.red)), //use for debug frame
         child: WebView(
-          //initialUrl: "https://flutterchina.club/",
-          initialUrl: 'http://www.baidu.com',
+          initialUrl: 'https://www.baidu.com', //⚠️iOS 加载 http 的地址，需要在 info.plist 中设置
           javascriptMode: JavascriptMode.unrestricted,
-          //debuggingEnabled: true,
           onPageFinished: (String value) {
-              // webview 页面加载调用
-              print(value);
+              print('网页加载完毕，$value');
           },
           onWebViewCreated: (c) {
             _controller = c;
           },
         ),
-
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _loadwebView,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // 
-    );
+      );
   }
 
-  _loadwebView() {
-    _controller.loadUrl('http://www.baidu.com');
+  void _navigationGobackAction() {
+    _controller.canGoBack().then((value) {
+      if (value) {
+        _controller.goBack();
+      }
+      else {
+        Navigator.pop(context);
+      }
+    });
+  }
+
+  void _loadwebView() {
+    _controller.loadUrl('https://music.163.com');
   }
 }
