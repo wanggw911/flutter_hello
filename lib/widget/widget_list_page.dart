@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hello/list_model.dart';
+import 'package:flutter_hello/widget/Listview02.dart';
 import 'package:flutter_hello/widget/circle_widget.dart';
 import 'package:flutter_hello/widget/clip_subview.dart';
-import 'package:flutter_hello/widget/cupertino_icons.dart';
 import 'package:flutter_hello/widget/gridView.dart';
 import 'package:flutter_hello/widget/listView.dart';
 import 'package:flutter_hello/widget/material_icon.dart';
@@ -17,8 +17,8 @@ List<Example> learningList = [
   Example(title: '4、CircleWidget', description: '', demoPage: CircleWidgetPage()),
   Example(title: '5、Widget Clip', description: 'clip sub widget', demoPage: ClipSubWidgetDemo()),
   Example(title: '6、Cupertino Icons', description: 'gridView show all cupertino icons', demoPage: GridViewDemoPage()),
-  //Example(title: '7、Cupertino Icons', description: '', demoPage: IconsEnumerateListPage()),
   Example(title: '7、Material Icons', description: 'gridView show all material icons', demoPage: MaterialIconsShowPage()),  
+  Example(title: '8、List Cell More Button', description: '', demoPage: ListviewMoreDemoPage()),
 ];
 
 class WidgetListPage extends StatelessWidget {
