@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 /*
 问题：Flutter核心技术与实战，第15课的问题
 1、如何获取字符串的长度？然后来控制 more button 的显示与隐藏
+
+flutter 这个 issue 也获知了还没提供获取 lines 的 API
+https://github.com/flutter/flutter/issues/224
 */
 
 class News {
